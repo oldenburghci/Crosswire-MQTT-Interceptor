@@ -1,0 +1,5 @@
+.breath {
+    transform-origin: center;
+    animation: breath 1s linear 0s infinite alternate-reverse none;
+}
+@keyframes breath {0% { transform: scale(0.75); } 100% { transform: scale(1.1);} }

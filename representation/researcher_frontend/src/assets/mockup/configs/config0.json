@@ -1,0 +1,21 @@
+{
+  "key" : 0,
+  "friendlyName" : "Full throttle Fan Experiment",
+  "steps": [
+    {
+      "label": "Device Configurations",
+      "tooltip": "Click here to configure the initial device configurations.",
+      "ready": true
+    },
+    {
+      "label": "Rule Set",
+      "tooltip": "Click here to configure the initial rule set.",
+      "ready":  false
+    },
+    {
+      "label": "Error Configurations",
+      "tooltip": "Click here to configure the error injection configurations.",
+      "ready":  false
+    }
+  ]
+}

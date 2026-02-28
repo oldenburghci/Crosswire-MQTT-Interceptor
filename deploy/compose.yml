@@ -1,0 +1,126 @@
+services:
+
+  ingress:
+    image: registry-gitlab.offis.de/mwozniak/smart-hotel-lab/nginx-ingress:development
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - smart-home-lab-middleware
+    environment:
+#      configure access to frontend, adminer
+     INGRESS_CONFIG: |
+      server{
+         listen 443 ssl;
+         server_name middleware.deus.lab;
+       
+         ssl_protocols       TLSv1.2 TLSv1.3;
+         ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5;       
+         ssl_session_timeout 10m;
+         ssl_certificate     /usr/local/nginx/conf/cert.pem;
+         ssl_certificate_key /usr/local/nginx/conf/key.pem;
+         ssl_session_cache   shared:SSL:10m;
+
+         location / {
+           proxy_pass https://researcher-frontend;
+         }
+       }
+      server{
+        listen 80;
+        server_name db-adminer.deus.lab;
+        
+        location / {
+          proxy_pass http://adminer:8080;
+        }
+      }
+
+  db:
+    image: docker.io/postgres:17.4
+    restart: always
+    shm_size: 128mb
+    volumes:
+      - db-model-volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: cLQZfhcbiu5c3wROGQyx
+      POSTGRES_USER: db-root
+      POSTGRES_DB: rbac-model
+    ports:
+      - "5432:5432"
+    networks:
+      - smart-home-lab-middleware
+
+# inspection ui
+  adminer:
+    image: adminer
+    restart: always
+#    ports:
+#      - "8080:8080"
+    networks:
+      - smart-home-lab-middleware
+
+  gateway:
+    image: registry-gitlab.offis.de/mwozniak/smart-hotel-lab/gateway:development
+    restart: always
+    environment:      
+      HOST: 0.0.0.0
+      PORT: 9000
+      SHH_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI5ODBiNWU4NTkyOTY0MTBiYTM2ZGM1NTVkMWY3ZDJlMSIsImlhdCI6MTczMDc5NTQ3MiwiZXhwIjoyMDQ2MTU1NDcyfQ.deVQ-3lHLb9TcpqvfiquyoZOKQAws5Cyq1UdeGulUsI
+      SHH_ADDRESS: http://host.docker.internal:8123
+      MQTT_ERROR_INJECTION_ENGINE_REST_ADDRESS: https://mqtt-error-injection-engine:8090
+      USER_MANAGEMENT_ADDRESS: https://user-management:9010
+    env_file: "compose.env"
+    command: tail -f /dev/null
+#    command: /bin/sh -c "cd /srv && ./main"
+#    network_mode: host
+    ports:
+      - "9000:9000"
+      - "8123:8123"
+    networks:
+      - smart-home-lab-middleware
+
+  researcher-frontend:
+    image: registry-gitlab.offis.de/mwozniak/smart-hotel-lab/researcher-frontend:development
+    restart: always
+#    ports:
+#      - "3000:443"
+    networks:
+      - smart-home-lab-middleware
+
+  mqtt-error-injection-engine:
+    image: registry-gitlab.offis.de/mwozniak/smart-hotel-lab/mqtt-error-injection-engine:development
+    restart: always
+    environment:
+      REST_ENGINE_PORT: 8090
+      REST_ENGINE_HOST: 0.0.0.0
+      MQTT_ENGINE_PORT: 1883
+      MQTT_ENGINE_HOST: 0.0.0.0
+    ports:
+      - "8090:8090"
+      - "1883:1883"
+    networks:
+      - smart-home-lab-middleware
+#    entrypoint: 
+#      /bin/sh -c
+#    command:
+#      "tail -f -"
+  user-management:
+    image: registry-gitlab.offis.de/mwozniak/smart-hotel-lab/user-management:development
+    restart: always
+    environment:
+      HOST: 0.0.0.0
+      PORT: 9010
+    env_file: "compose.env"
+    ports:
+      - "9010:9010"
+    networks:
+      - smart-home-lab-middleware
+
+volumes:
+  db-model-volume:
+
+networks:
+  smart-home-lab-middleware:
+    driver: bridge
+  pass-through:
+    driver: host
