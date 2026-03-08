@@ -1,5 +1,5 @@
 
-# Zigbee2MQTT & Home Assistant Installation Guide (Linux Ubuntu)
+# Installation Guide (Linux Ubuntu)
 
 This guide provides step-by-step instructions for setting up the MQTT interceptor, Zigbee2MQTT, and Home Assistant on a Linux Ubuntu system using Podman. Follow these steps to ensure a smooth installation and configuration process.
 
