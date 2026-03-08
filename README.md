@@ -151,7 +151,7 @@ This guide provides step-by-step instructions for setting up the MQTT intercepto
 3. Click **Login** (no credentials required).
 4. Add a new configuration and select **Edit**. 
 5. Navigate to the **Error Configuration** tab and scan the network.
-6. Select the device to suppress and click ** ⃠**. 
+6. Select the device to suppress and click ⃠. 
 7. Go back to the configuration and select **Run**, then **Deploy all**.
 7. To lift the suppression, click **Undo all**. 
 
