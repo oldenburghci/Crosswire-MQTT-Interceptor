@@ -1,33 +1,164 @@
-# smart-hotel-lab
+
+# Zigbee2MQTT & Home Assistant Installation Guide (Linux Ubuntu)
+
+This guide provides step-by-step instructions for setting up the MQTT interceptor, Zigbee2MQTT, and Home Assistant on a Linux Ubuntu system using Podman. Follow these steps to ensure a smooth installation and configuration process.
 
 
-## Introduction
+---
 
-The smart-hotel-lab is a laboratory at the OFFIS research facility. It is intended to provide a real environment for
-experimental tests in the field of smart homes. The lab is currently being set up. 
+## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [Step 1: Identify the Zigbee Coordinator Path](#step-1-identify-the-zigbee-coordinator-path)
+3. [Step 2: Install Podman and Enable Docker Compatibility](#step-2-install-podman-and-enable-docker-compatibility)
+4. [Step 3: Add User to the `dialout` Group](#step-3-add-user-to-the-dialout-group)
+5. [Step 4: Configure Container Registries](#step-4-configure-container-registries)
+6. [Step 5: Set Up Udev Rules for the Zigbee Coordinator](#step-5-set-up-udev-rules-for-the-zigbee-coordinator)
+7. [Step 6: Run the Containers](#step-6-run-the-containers)
+8. [Step 7: Onboarding for Home Assistant and Zigbee2MQTT](#step-7-onboarding-for-home-assistant-and-zigbee2mqtt)
+9. [Step 8: Configure MQTT Broker in Home Assistant](#step-8-configure-mqtt-broker-in-home-assistant)
+10. [Step 9: Suppress a Zigbee Device](#step-9-suppress-a-zigbee-device)
+11. [Notes](#notes)
 
-This repository bundles separate documentation for the lab as well as the relevant code for the software 
-components. For each component additional readme files are included, that describe the intended goals, functionality as 
-well as the basic steps for setup and configuration.  
+---
 
+## Prerequisites
+- Linux Ubuntu distribution
+- Zigbee USB Coordinator (e.g., `/dev/ttyUSB0`)
+- Podman and Podman Compose installed
+- Docker compatibility enabled in Podman
 
-## Traceability 
+---
 
-Gitlab provides its own ticket system that allows to document and monitor project progress 
-(see [current project issues](https://gitlab.offis.de/mwozniak/smart-hotel-lab/-/issues) and [gitlab issue documentation](https://docs.gitlab.com/ee/user/project/issues/)).
-It is strongly recommended to use this feature in a project to trace the progress and document the development history. 
- 
-A task in the project should be written down into an issue, that includes a description as well as a definition of done (DoD).
-A DoD formulates acceptance criteria for a task that a valid solution must fulfill. Consider [this](https://gitlab.offis.de/mwozniak/smart-hotel-lab/-/issues/1) example as a template.
+## Step 1: Identify the Zigbee Coordinator Path
+1. Check the correct path for your Zigbee coordinator:
+   ```bash
+   ls -l /dev/serial/by-id/
+   ```
+2. Replace `/dev/ttyUSB0` in the provided `docker-compose.yml` file with the correct path for your device.
 
-Issues and commits are cross-referencable with a proper commit message and become easy to navigate 
-(see [gitlab cross-linking documentation](https://docs.gitlab.com/ee/user/project/issues/crosslinking_issues.html)). 
-Please use this linking technique in your commits if a commit is related to an issue.  
+---
 
-## Project Structure
+## Step 2: Install Podman and Enable Docker Compatibility
+1. Install Podman:
+   ```bash
+   sudo apt install podman
+   ```
+2. Enable Docker compatibility in Podman Desktop.
 
-To be continued...
+---
 
-## Contribution Guidelines
+## Step 3: Add User to the `dialout` Group
+1. Add the active user to the `dialout` group:
+   ```bash
+   sudo usermod -aG dialout $USER
+   ```
+2. Log out and log back in for the changes to take effect.
+3. Verify group membership:
+   ```bash
+   groups
+   ```
 
-To be continued...
+---
+
+## Step 4: Configure Container Registries
+1. Open the registries configuration file:
+   ```bash
+   sudo nano /etc/containers/registries.conf
+   ```
+2. Add the following lines:
+   ```ini
+   [registries.search]
+   registries = ["docker.io"]
+   ```
+
+---
+
+## Step 5: Set Up Udev Rules for the Zigbee Coordinator
+1. Create a udev rule file:
+   ```bash
+   sudo nano /etc/udev/rules.d/99-zigbee-coord.rules
+   ```
+2. Insert the following line, replacing `VendorID` and `ProductID` with the actual IDs from `lsusb`:
+   ```ini
+   SUBSYSTEM=="tty", ATTRS{idVendor}=="VendorID", ATTRS{idProduct}=="ProductID", SYMLINK+="zigbee", MODE="0666", GROUP="dialout"
+   ```
+3. Find the Vendor and Product IDs:
+   ```bash
+   lsusb
+   ```
+> **Hint:** If the result of `lsusb` is `Bus 001 Device 004: ID 10c4:ea60 Silicon Labs CP210x UART Bridge`, the vendor ID would be `10c4` and the product ID would be `ea60`.
+4. Save the file and set the correct permissions:
+   ```bash
+   sudo chmod 644 /etc/udev/rules.d/99-zigbee-coord.rules
+   ```
+5. Reload and trigger udev rules:
+   ```bash
+   sudo udevadm control --reload-rules
+   sudo udevadm trigger
+   ```
+> **Hint:** `sudo chmod 666` gives a file read-and-write privileges. `sudo chmod 644` makes a file readable by udev.
+
+---
+
+## Step 6: Run the Containers
+1. Install `podman-compose`:
+   ```bash
+   sudo apt install podman-compose
+   ```
+2. Navigate to the directory containing the `docker-compose.yml` file.
+3. Start the containers:
+   ```bash
+   podman-compose up -d
+   ```
+4. Verify that 8 containers are running in Podman Desktop.
+
+---
+
+## Step 7: Onboarding for Home Assistant and Zigbee2MQTT
+1. Access Home Assistant at:
+   ```
+   http://localhost:8123
+   ```
+2. Complete the onboarding process for Home Assistant.
+3. Access Zigbee2MQTT at:
+   ```
+   http://0.0.0.0:8080
+   ```
+4. Complete the onboarding process for Zigbee2MQTT. Ensure the coordinator is recognized and select the appropriate settings.
+5. Enable Home Assistant integration in Zigbee2MQTT.
+6. Verify the logs in Podman Desktop for the message:
+   ```
+   z2m: Connected to MQTT server
+   ```
+
+---
+
+## Step 8: Configure MQTT Broker in Home Assistant
+1. Navigate to **Settings -> Devices and Services** in Home Assistant.
+2. Add the **MQTT** integration.
+3. Enter the IP address of the machine running the Zigbee2MQTT container (use `ifconfig` to find it).
+4. Ensure port `1883` is selected.
+5. No username or password is required.
+
+---
+
+## Step 9: Suppress a Zigbee Device
+1. Access the interceptor at:
+   ```
+   https://localhost:3000
+   ```
+2. Accept the self-signed certificate warning.
+3. Click **Login** (no credentials required).
+4. Add a new configuration and select **Edit**. 
+5. Navigate to the **Error Configuration** tab and scan the network.
+6. Select the device to suppress and click ** ⃠**. 
+7. Go back to the configuration and select **Run**, then **Deploy all**.
+7. To lift the suppression, click **Undo all**. 
+
+---
+
+## Notes
+- Using Docker Desktop is strongly discouraged as the coordinator was never properly passed through when preparing this installation guide.
+- Replace placeholders (e.g., `VendorID`, `ProductID`) with actual values.
+- Ensure the Zigbee coordinator is properly connected and recognized by the system.
+- The interceptor uses a self-signed certificate; proceed with caution.
