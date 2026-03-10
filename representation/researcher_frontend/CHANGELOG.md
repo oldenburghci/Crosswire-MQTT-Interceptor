@@ -1,1 +1,0 @@
-v1.0.0.4 # fixed serve bugs, functional improvements in automation editing 
