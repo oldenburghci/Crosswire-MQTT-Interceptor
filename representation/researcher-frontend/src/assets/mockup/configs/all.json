@@ -1,0 +1,12 @@
+{
+  "configs": [
+    {
+      "friendlyName" : "Full throttle Fan Experiment",
+      "key" : 0
+    },
+    {
+      "friendlyName" : "Lights out Experiment",
+      "key" : 1
+    }
+  ]
+}
