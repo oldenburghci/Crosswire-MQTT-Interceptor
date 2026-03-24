@@ -43,3 +43,5 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	rsc.io/sampler v1.3.0 // indirect
 )
+
+replace gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine => .

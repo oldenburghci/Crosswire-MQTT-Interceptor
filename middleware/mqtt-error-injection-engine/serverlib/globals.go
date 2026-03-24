@@ -5,8 +5,6 @@ import (
 	"gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib/mqtt"
 )
 
-//import "gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib/mqtt/startup"
-
 var MITM_MQTT_SERVER *mqtt.MITMMQTTServer
 var MITM_MQTT_ENGINE_CONFIG *mitm_mqtt_proxy.MQTTMITMProxyConfig
 var REMOTE_BROKER_CONFIG *mitm_mqtt_proxy.RemoteMQTTBrokerConfig

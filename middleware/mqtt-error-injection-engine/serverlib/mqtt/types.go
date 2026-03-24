@@ -25,7 +25,6 @@ type MITMMQTTServer struct {
 	networkScanResult []byte
 }
 
-// TODO: Write documentation!
 func NewMITMMQTTServer() *MITMMQTTServer {
 	return &MITMMQTTServer{
 		Server: mochimqtt.New(
@@ -43,7 +42,6 @@ func NewMITMMQTTServer() *MITMMQTTServer {
 	}
 }
 
-// TODO: Write documentation!
 func (s *MITMMQTTServer) GetTopicNames() []string {
 	result := make([]string, 0)
 	// GetAll is a thread-safe call
@@ -60,20 +58,6 @@ func (s *MITMMQTTServer) GetTopicNames() []string {
 	return result
 }
 
-//func (s *MITMMQTTServer) GetManagedTopics() types.MQTTTopics {
-//	s.mutexManagedTopics.RLock()
-//	defer s.mutexManagedTopics.RUnlock()
-//	result := types.MQTTTopics{
-//		Topics: make([]*types.MQTTTopic, 0),
-//	}
-//	for _, topic := range s.managedTopics.Topics {
-//		result.Topics = append(result.Topics, topic)
-//	}
-//	return result
-//}
-
-// TODO: Write documentation!
-// TODO: This should iterate through the managedTopics
 func (s *MITMMQTTServer) GetTopics() types.MQTTTopics {
 	result := types.MQTTTopics{
 		Topics: make([]*types.MQTTTopic, 0),
@@ -149,8 +133,6 @@ func (s *MITMMQTTServer) GetSuppressedTopics() types.MQTTTopics {
 	return result
 }
 
-// TODO: Check and update the usage of this function
-// TODO: Write documentation!
 func (s *MITMMQTTServer) AddSuppressTopic(topic *types.MQTTTopic) bool {
 	// already suppressed
 	if topic.IsSuppressed() {
@@ -173,33 +155,6 @@ func (s *MITMMQTTServer) AddSuppressTopic(topic *types.MQTTTopic) bool {
 	//already in the collection
 	return false
 }
-
-//// TODO: Check and update the usage of this function
-//// TODO: Write documentation!
-//func (s *MITMMQTTServer) RemoveSuppressedTopic(topic *types.MQTTTopic) bool {
-//	s.mutexManagedTopics.Lock()
-//	defer s.mutexManagedTopics.Unlock()
-//	i := slices.IndexFunc(s.managedTopics.Topics, func(t *types.MQTTTopic) bool {
-//		return t.Name == topic.Name
-//	})
-//	// is in
-//	if i != -1 {
-//		s.managedTopics.Topics = append(s.managedTopics.Topics[:i], s.managedTopics.Topics[i+1:]...)
-//		topic.CancelSuppress()
-//		return true
-//	}
-//	return false
-//}
-
-// TODO: Write documentation! Really required?
-//func (s *MITMMQTTServer) IsTopicSuppressed(topic *types.MQTTTopic) bool {
-//	s.mutexManagedTopics.RLock()
-//	defer s.mutexManagedTopics.RUnlock()
-//
-//	return slices.ContainsFunc(s.managedTopics.Topics, func(t *types.MQTTTopic) bool {
-//		return t.Name == topic.Name
-//	})
-//}
 
 // Manage InterceptedTopics
 
@@ -250,14 +205,6 @@ func (s *MITMMQTTServer) RemoveTopic(topic *types.MQTTTopic) bool {
 	return true
 }
 
-//// TODO: Really required?
-//func (s *MITMMQTTServer) IsTopicIntercepted(topic *types.MQTTTopic) bool {
-//	s.mutexManagedTopics.RLock()
-//	defer s.mutexManagedTopics.RUnlock()
-//
-//	return slices.ContainsFunc(s.managedTopics.Topics, func(t *types.MQTTTopic) bool { return t.Name == topic.Name })
-//}
-
 func (s *MITMMQTTServer) GetInterceptedTopics() *types.MQTTTopics {
 	result := types.MQTTTopics{
 		Topics: make([]*types.MQTTTopic, 0),
@@ -280,22 +227,6 @@ func (s *MITMMQTTServer) GetInterceptedTopicNames() []string {
 	}
 	return result
 }
-
-//// GetInterceptedTopic TODO: Deprecated
-//func (s *MITMMQTTServer) GetInterceptedTopic(topicName string) (*types.MQTTTopic, bool) {
-//	s.mutexManagedTopics.RLock()
-//	defer s.mutexManagedTopics.RUnlock()
-//
-//	i := slices.IndexFunc(s.managedTopics.Topics, func(t *types.MQTTTopic) bool {
-//		return t.Name == topicName
-//	})
-//	if i == -1 {
-//		return nil, false
-//	}
-//	topic := s.managedTopics.Topics[i]
-//
-//	return topic, true
-//}
 
 func (s *MITMMQTTServer) RequestNetworkScan() (map[string]interface{}, error) {
 	// lock the access to this method because it denies communication within the lab
@@ -332,7 +263,6 @@ func (s *MITMMQTTServer) CallbackNetworkScan(cl *mochimqtt.Client, sub packets.S
 	defer s.mutexNetworkScan.Unlock()
 	defer s.waitNetworkScan.Done()
 	s.Server.Log.Info("Network scan done")
-	//s.Server.Log.Info("inline client received message from subscription", "client", cl.ID, "subscriptionId", sub.Identifier, "topic", pk.TopicName, "payload", string(pk.Payload))
 	s.networkScanResult = pk.Payload
 	err := s.Server.Unsubscribe("zigbee2mqtt/bridge/response/networkmap", 99)
 	if err != nil {

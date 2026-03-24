@@ -54,9 +54,6 @@ func (hook *SuppressTopicHook) OnPublish(cl *mochimqtt.Client, pk packets.Packet
 	return pk, nil
 }
 
-//Made wit perplexity.ai, prompts:
-// 1) Do you know about the MQTT Version Wildcard subscription with '+' and '#' 2) Can you write an algorithm in golang that matches a topic name against wildcard patterns?
-
 // MatchTopic checks if a topic matches a MQTT wildcard pattern ('#' | '+')
 func MatchTopic(pattern, topic string) bool {
 	patternParts := strings.Split(pattern, "/")
@@ -69,34 +66,28 @@ func matchParts(patternParts, topicParts []string) bool {
 
 	for i < len(patternParts) && j < len(topicParts) {
 		currentPattern := patternParts[i]
-
 		switch {
 		case currentPattern == "#":
 			// Multi-level wildcard must be last element
 			return i == len(patternParts)-1
-
 		case currentPattern == "+":
 			// Single-level wildcard
 			i++
 			j++
-
 		case currentPattern == topicParts[j]:
 			// Exact match
 			i++
 			j++
-
 		default:
 			// No match
 			return false
 		}
 	}
-
 	// Handle remaining pattern parts
 	if i < len(patternParts) {
 		// Check if remaining pattern is a single '#'
 		return len(patternParts[i:]) == 1 && patternParts[i] == "#"
 	}
-
 	// All pattern parts matched - verify topic is fully consumed
 	return j == len(topicParts)
 }

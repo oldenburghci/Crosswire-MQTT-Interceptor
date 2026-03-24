@@ -13,7 +13,6 @@ func TestTemplate_EqualMatch_NamesEqual(t *testing.T) {
 	template0 := NewPlainTemplate("dummy")
 
 	topic0.InputTemplate = template0
-	//topic1.InputTemplate = template0
 	topic2.InputTemplate = template0
 
 	resultTrue := topic0.EqualMatch(topic2)

@@ -48,18 +48,10 @@ func (hook *InterceptionHook) OnPublish(cl *mochimqtt.Client, pk packets.Packet)
 	// not parsable
 	json.Unmarshal(pk.Payload, &payloadJSON)
 	payloadText = string(pk.Payload)
-	//fmt.Printf("payload parsed to json: %+v\n", payloadJSON)
-	//fmt.Printf("payload parsed to text: %s\n", payloadText)
 
 	for _, topic := range topics {
-		//fmt.Printf("in interception hook... topicName=%s, template?=%t, manual?=%t\n",
-		//	topic.Name,
-		//	topic.IsTemplateBasedIntercepted(),
-		//	topic.IsManuallyIntercepted(),
-		//)
 		hook.handleTemplateInterception(payloadJSON, payloadText, &pk, topic)
 
-		//TODO: the whole manual interaction feature has to be redone in another iteration
 		if topic.IsManuallyIntercepted() {
 			clientResponse, err := handler.StreamInterception(pk)
 			if err != nil {
@@ -67,15 +59,12 @@ func (hook *InterceptionHook) OnPublish(cl *mochimqtt.Client, pk packets.Packet)
 				return pk, nil
 			}
 			switch clientResponse.Control {
-			//case "pass":
-			//	break
 			case "overwrite":
 				pk.Payload = []byte(clientResponse.NewMessage)
 			case "suppress":
 				pk.Ignore = true
 			default:
 				break
-				//pk.Payload = pk.Payload
 			}
 		}
 	}
@@ -103,8 +92,6 @@ func (hook *InterceptionHook) handleTemplateInterception(payloadAsJSON interface
 		var ruleJSON interface{}
 		if err := json.Unmarshal(topic.InputTemplate.JSON, &ruleJSON); err != nil {
 			fmt.Printf("Error unmarshalling template: %s\n", err.Error())
-			//TODO: do something on error
-			// How is it even possible that a unparseable template has been accepted by the server?
 		}
 
 		if equal := cmp.Equal(ruleJSON, payloadAsJSON); !equal {

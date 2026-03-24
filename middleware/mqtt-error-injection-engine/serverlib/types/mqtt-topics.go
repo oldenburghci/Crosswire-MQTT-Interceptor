@@ -7,9 +7,7 @@ import (
 )
 
 type MQTTTopic struct {
-	Name string `json:"name"`
-	//Schedule         *Schedule `json:"schedule,omitempty"`
-	//mutex            sync.Mutex
+	Name             string `json:"name"`
 	suppressed       bool
 	intercepted      bool
 	interceptionMode string
@@ -20,7 +18,6 @@ type MQTTTopic struct {
 func NewMQTTTopic(name string) *MQTTTopic {
 	return &MQTTTopic{
 		Name: name,
-		//mutex: sync.Mutex{},
 	}
 }
 
@@ -29,8 +26,6 @@ func (t *MQTTTopic) IsIntercepted() bool {
 }
 
 func (t *MQTTTopic) Intercept() error {
-	//t.mutex.Lock()
-	//defer t.mutex.Unlock()
 	if t.intercepted {
 		return errors.New("already intercepted")
 	}
@@ -42,8 +37,6 @@ func (t *MQTTTopic) Intercept() error {
 }
 
 func (t *MQTTTopic) CancelIntercept() {
-	//t.mutex.Lock()
-	//defer t.mutex.Unlock()
 	t.intercepted = false
 }
 
@@ -70,8 +63,6 @@ func (t *MQTTTopic) IsTemplateBasedIntercepted() bool {
 }
 
 func (t *MQTTTopic) Suppress() error {
-	//t.mutex.Lock()
-	//defer t.mutex.Unlock()
 	if t.suppressed {
 		return errors.New("already suppressed")
 	}
@@ -85,8 +76,6 @@ func (t *MQTTTopic) Suppress() error {
 func (t *MQTTTopic) IsSuppressed() bool { return t.suppressed }
 
 func (t *MQTTTopic) CancelSuppress() {
-	//t.mutex.Lock()
-	//defer t.mutex.Unlock()
 	t.suppressed = false
 }
 

@@ -9,7 +9,7 @@ import (
 )
 
 type RESTEndpoint struct {
-	KeyToInterceptedTopics          map[string][]*MQTTTopic // TODO: Documentation wanted!
+	KeyToInterceptedTopics          map[string][]*MQTTTopic
 	keyToInterceptedTopicsMutex     sync.RWMutex
 	KeyToClients                    map[string][]*websocket.Conn // register clients receive intercepted topics
 	keyToClientsMutex               sync.RWMutex
@@ -114,10 +114,6 @@ func (endpoint *RESTEndpoint) RemoveClient(key string, conn *websocket.Conn) boo
 	}
 	clients := endpoint.KeyToClients[key]
 	if i := slices.Index(clients, conn); i != -1 {
-		//client := clients[i]
-		//if err := client.Close(); err != nil {
-		//	fmt.Printf("Error closing websocket client: %v", err)
-		//}
 		clients = append(clients[:i], clients[i+1:]...)
 		endpoint.KeyToClients[key] = clients
 		return true
@@ -140,15 +136,7 @@ func (endpoint *RESTEndpoint) GetInterceptedTopics(key string) ([]*MQTTTopic, bo
 	return topics, ok
 }
 
-//func (endpoint *RESTEndpoint) GetKeysForInterceptedTopic(topicName string) ([]string, bool) {
-//
-//}
-//
-//func (endpoint *RESTEndpoint) GetKeysForClients(key string) ([]string, bool) {}
-
 func (endpoint *RESTEndpoint) GetClientsByInterceptedTopicName(topicName string) ([]*websocket.Conn, error) {
-	//endpoint.keyToClientsMutex.RLock()
-	//defer endpoint.keyToClientsMutex.RUnlock()
 	endpoint.interceptedTopicNamesToKeyMutex.RLock()
 	defer endpoint.interceptedTopicNamesToKeyMutex.RUnlock()
 

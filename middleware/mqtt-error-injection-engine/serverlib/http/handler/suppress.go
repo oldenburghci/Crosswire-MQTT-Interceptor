@@ -175,30 +175,3 @@ func PostCancelSuppressionForTopicsHandler(context *gin.Context) {
 		},
 	)
 }
-
-//func activateSuppressionStartTimer(topic *types.MQTTTopic) (*time.Time, error) {
-//	mymqtt.MITM_MQTT_SERVER.Server.Log.Info("scheduling topic to suppressed")
-//	// the user has sent at least a start time
-//	// create one timer that activates the suppression
-//	durationUntilSuppressionStarts := time.Until(*topic.Schedule.StartTime)
-//	startSuppressionTimer := time.AfterFunc(durationUntilSuppressionStarts, func() {
-//		mymqtt.MITM_MQTT_SERVER.Server.Log.Info(
-//			fmt.Sprintf("suppression for topic %s starts now", topic.Name))
-//		mymqtt.MITM_MQTT_SERVER.AddSuppressTopic(topic)
-//	})
-//	// for possible abort operation
-//	err := topic.Schedule.SetStartTimer(startSuppressionTimer)
-//	return topic.Schedule.StartTime, err
-//}
-//
-//func activateSuppressionEndTimer(topic *types.MQTTTopic) (*time.Time, error) {
-//	durationUntilSuppressionEnds := time.Until(topic.Schedule.StartTime.Add(time.Duration(topic.Schedule.Duration)))
-//	endSuppressionTimer := time.AfterFunc(durationUntilSuppressionEnds, func() {
-//		mymqtt.MITM_MQTT_SERVER.Server.Log.Info(
-//			fmt.Sprintf("suppression for topic %s ends now", topic.Name))
-//		mymqtt.MITM_MQTT_SERVER.RemoveSuppressedTopic(topic)
-//	})
-//	err := topic.Schedule.SetEndTimer(endSuppressionTimer)
-//	t := topic.Schedule.StartTime.Add(time.Duration(topic.Schedule.Duration))
-//	return &t, err
-//}
