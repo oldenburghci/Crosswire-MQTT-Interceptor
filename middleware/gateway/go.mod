@@ -70,3 +70,6 @@ require (
 	modernc.org/memory v1.5.0 // indirect
 	modernc.org/sqlite v1.20.3 // indirect
 )
+
+replace gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/user-management => ../user-management
+replace gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/gateway => .

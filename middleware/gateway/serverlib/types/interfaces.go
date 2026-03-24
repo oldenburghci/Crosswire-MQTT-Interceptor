@@ -7,15 +7,11 @@ type ApplicationDataPersistenceProvider interface {
 	GetConfigurationByFriendlyName(userID uint, friendlyName string) (*Configuration, error)
 	GetConfigurationByID(userID, configurationID uint) (*Configuration, error)
 	GetConfigurationByResourceID(resourceID string) (*Configuration, error)
-	//GetAllSharedConfigurations(userID uint) ([]*Configuration, error)
 	UpdateConfiguration(configuration *Configuration) error
 	DeleteConfiguration(configuration *Configuration) error
 	CreateConfiguration(configuration *Configuration) error
 	DeleteConfigurationSharedWith(configuration *Configuration) error
-	//GetSharedUserIDsForConfiguration(resourceID string) ([]uint, error)
-	//GetIsSharedForConfiguration(resourceID string) (bool, error)
-	//GetOwnerIDForConfiguration(resourceID string) (uint, error)
-	//GetConfigurationResourceIDsForUser(uid uint) ([]string, error)
+
 	DeleteDevicesAndEntries(step *DeviceConfigurationStep) error
 	DeleteSuppressedAndInterceptedTopics(step *ErrorConfigurationStep) error
 
@@ -33,8 +29,6 @@ type ApplicationDataPersistenceProvider interface {
 	GetMemoItems() ([]*MemoItem, error)
 	CreateMemoItem(memoItem *MemoItem, MemoResourceID string) error
 	UpdateMemoItem(memoItem *MemoItem) error
-	//GetMemoResourceIDsForUser(uid uint) ([]string, error)
-	//GetMemoAccessParametersByResourceId(resourceID string) (bool, uint, []uint, error)
 	CreateMemoItems(items []*MemoItem) error
 	DeleteMemoItems(items []*MemoItem) error
 	DeleteMemoSharedWiths(memo *Memo) error

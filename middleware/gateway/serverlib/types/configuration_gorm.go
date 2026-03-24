@@ -65,37 +65,15 @@ func (device *Device) BeforeDelete(tx *gorm.DB) error {
 	return nil
 }
 
-//func (definition AutomationDefinition) BeforeDelete(tx *gorm.DB) error {
-//	if definition.Protected {
-//		//return errors.New("Protected data")
-//		return nil
-//	}
-//
-//	for _, t := range definition.Triggers {
-//		if err := tx.Delete(&t).Error; err != nil {
-//			return err
-//		}
-//	}
-//	return nil
-//}
-
 func (substitution *AutomationSubstitution) BeforeDelete(tx *gorm.DB) error {
-
 	if err := tx.Unscoped().Delete(&substitution.Definitions); err != nil {
 		return err.Error
 	}
-
-	//fmt.Printf("before delete automation substitution done\n")
 	return nil
 }
 
 func (definition *AutomationDefinition) BeforeDelete(tx *gorm.DB) error {
-	//if definition.ID == 0 || definition. {
-	//	return nil
-	//}
-	//fmt.Printf("before delete triggered for AutomationDefinition.\nDefinition: %+v\n ", definition)
 	for _, trigger := range definition.Triggers {
-		//fmt.Println("trigger", trigger)
 		if err := tx.Unscoped().Delete(&trigger).Error; err != nil {
 			return err
 		}

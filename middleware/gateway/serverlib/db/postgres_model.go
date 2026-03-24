@@ -40,11 +40,7 @@ func NewPostgresModelProvider(config map[string]string) (*PostgresModelProvider,
 	err = provider.dbConnection.AutoMigrate(
 		&types.Configuration{},
 		&types.Entity{},
-		//&types.Device{},
 		&types.DeviceConfigurationStep{},
-		//&types.EntityConfiguration{},
-
-		//&types.RuleSubstitution{},
 		&types.Trigger{},
 		&types.Condition{},
 		&types.Action{},
@@ -109,7 +105,6 @@ func (p *PostgresModelProvider) createDatabase() error {
 	if err != nil {
 		return err
 	}
-	//TODO: database name from env
 	createCmd := fmt.Sprintf("CREATE DATABASE \"%s\"", "middleware-data")
 	err = db.Exec(createCmd).Error
 	if err != nil {
@@ -123,8 +118,6 @@ func (p *PostgresModelProvider) createDatabase() error {
 
 	return nil
 }
-
-//Memo related
 
 func (p *PostgresModelProvider) GetMemosForUser(userID uint) ([]*types.Memo, error) {
 	memos := make([]*types.Memo, 0)
@@ -166,7 +159,6 @@ func (p *PostgresModelProvider) CreateMemo(memo *types.Memo) error {
 }
 
 func (p *PostgresModelProvider) CreateMemoItem(memoItem *types.MemoItem, memoResourceID string) error {
-	//TODO implement me
 	panic("implement me")
 }
 
@@ -185,8 +177,6 @@ func (p *PostgresModelProvider) DeleteMemo(memo *types.Memo) error {
 	}
 	return nil
 }
-
-//configurations
 
 func (p *PostgresModelProvider) GetConfigurationsForUser(userID uint) ([]*types.Configuration, error) {
 	configurations := make([]*types.Configuration, 0)
@@ -260,7 +250,6 @@ func (p *PostgresModelProvider) GetConfigurationByResourceID(resourceID string) 
 	result :=
 		p.dbConnection.
 			Preload("DeviceConfigurationStep").Preload("DeviceConfigurationStep.Entities").
-			//Preload("DeviceConfigurationStep.Entities").
 			Preload("RulesConfigurationStep").
 			Preload("RulesConfigurationStep.Substitutions").
 			Preload("RulesConfigurationStep.Substitutions.Definitions").
@@ -352,9 +341,6 @@ func (p *PostgresModelProvider) CreateMemoItems(items []*types.MemoItem) error {
 	if query.Error != nil {
 		return query.Error
 	}
-	//if query.Statement.Changed() {
-	//	return errors.New("no entry has changed by this update operation")
-	//}
 	return nil
 }
 
@@ -397,20 +383,17 @@ func (p *PostgresModelProvider) GetMemoByReferencedResourceID(resourceID string)
 	//(from a configuration) and then get the memo for it.
 	// Might be worth to simplify in a future iteration.
 	query := p.dbConnection.
-		//Debug().
 		Find(&reference, "resource_id = ? ", resourceID)
 	if query.Error != nil {
 		return nil, query.Error
 	}
 
 	query = p.dbConnection.
-		//Debug().
 		Preload("MemoSharedWith").
 		Preload("MemoItems", func(db *gorm.DB) *gorm.DB {
 			return db.Order("created_at DESC")
 		}).
 		Find(&memo, "id = ? ", reference.ReferenceID)
-	//fmt.Printf("memo=%+v\n", memo)
 	if query.Error != nil {
 		return nil, query.Error
 	}
@@ -547,9 +530,6 @@ func (p *PostgresModelProvider) DeleteAutomationDefinitions(definitions []*types
 	if query.Error != nil {
 		return query.Error
 	}
-	//if query.RowsAffected == 0 {
-	//	return errors.New("automation definitions could not be deleted. Does they exist?")
-	//}
 	return nil
 }
 

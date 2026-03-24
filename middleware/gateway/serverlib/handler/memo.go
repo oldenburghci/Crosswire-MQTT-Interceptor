@@ -21,7 +21,6 @@ func GetMemosHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//fmt.Println(resourceIDs)
 	for _, resourceID := range resourceIDs.([]string) {
 		memo, err := serverlib.MODEL_PROVIDER.GetMemoByResourceID(resourceID)
 		if err != nil {
@@ -178,7 +177,6 @@ func UpdateMemoItemsHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//fmt.Printf("%+v\n", request)
 
 	currentMemo, err := serverlib.MODEL_PROVIDER.GetMemoByResourceID(ctx.Param("id"))
 	currentItems := currentMemo.MemoItems
@@ -192,7 +190,6 @@ func UpdateMemoItemsHandler(ctx *gin.Context) {
 	for _, memoItem := range request.MemoItems {
 		// get the current item to fetch its model
 		i := slices.IndexFunc(currentItems, func(item types.MemoItem) bool {
-			//fmt.Printf("%s==%s=%t", item.ResourceID.String(), memoItem.ResourceID.String(), item.ResourceID == memoItem.ResourceID)
 			return item.ResourceID == memoItem.ResourceID
 		})
 		if i == -1 {
@@ -204,8 +201,6 @@ func UpdateMemoItemsHandler(ctx *gin.Context) {
 		memoItem.Model = currentItem.Model
 		memoItem.MemoID = currentItem.MemoID
 		memoItem.OwnerID = currentItem.OwnerID
-
-		//fmt.Printf("currentItem: %+v\n memoItem: %+v\n", currentItem, memoItem)
 
 		if err := serverlib.MODEL_PROVIDER.UpdateMemoItem(&memoItem); err != nil {
 			fmt.Printf("%s\n", err.Error())

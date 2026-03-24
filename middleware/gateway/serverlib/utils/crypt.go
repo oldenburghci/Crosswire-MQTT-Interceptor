@@ -12,7 +12,6 @@ var JWT_SECRET string
 
 func init() {
 	JWT_SECRET = gateway.GetFromEnvironment("JWT_SECRET")
-	//fmt.Println("JWT_SECRET:", JWT_SECRET)
 }
 
 // took from
@@ -45,7 +44,6 @@ func GenerateToken(userid uint) string {
 
 // ValidateToken --> validate the given jwt token
 func ValidateToken(token string) (*jwt.Token, error) {
-
 	//2nd arg function return secret key after checking if the signing method is HMAC and returned key is used by 'Parse' to decode the token)
 	return jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

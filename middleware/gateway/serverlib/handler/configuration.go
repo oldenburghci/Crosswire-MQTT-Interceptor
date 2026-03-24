@@ -15,8 +15,6 @@ import (
 	"gorm.io/datatypes"
 	"io/ioutil"
 	"net/http"
-	//"reflect"
-	//"strconv"
 )
 
 func GetAllConfigurationsHandler(ctx *gin.Context) {
@@ -69,9 +67,6 @@ func GetConfigurationHandler(ctx *gin.Context) {
 }
 
 func CreateConfigurationHandler(ctx *gin.Context) {
-	//fmt.Println("CreateConfigurationHandler called")
-	//fmt.Printf("%+v\n", ctx)
-	//parse the incoming request data and check its validity
 	uid, err := utils.GetUserIDFromContext(ctx)
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
@@ -80,7 +75,7 @@ func CreateConfigurationHandler(ctx *gin.Context) {
 	request := struct {
 		Name string `json:"friendlyName" binding:"required"`
 	}{}
-	//TODO: create the minimal object on nested lists, this is causing a bug!
+
 	configuration := types.Configuration{}
 
 	configuration.ErrorConfigurationStep.SuppressedTopics = make([]types.MQTTSuppressedTopicWrapper, 0)
@@ -107,8 +102,6 @@ func CreateConfigurationHandler(ctx *gin.Context) {
 	}
 	configuration.Name = request.Name
 	configuration.OwnerID = uid
-	//fmt.Printf("newConfig: %+v\n", configuration)
-	//upload configuration
 	err = serverlib.MODEL_PROVIDER.CreateConfiguration(&configuration)
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
@@ -116,7 +109,6 @@ func CreateConfigurationHandler(ctx *gin.Context) {
 			"message": "internal server error",
 		})
 	}
-	//return
 	ctx.JSON(http.StatusCreated, gin.H{
 		"message":    "created",
 		"resourceID": configuration.ResourceID.String(),
@@ -264,10 +256,6 @@ func UpdateConfigurationRulesHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//check if
-
-	//do not delete the initial rule definition per default, only delete if a rule is removed from the configuration step
-	//TODO: protect the init rules from overwrites
 	request.RulesConfigurationStep.Model = current.RulesConfigurationStep.Model
 	current.RulesConfigurationStep = request.RulesConfigurationStep
 
@@ -284,9 +272,7 @@ func UpdateConfigurationRulesHandler(ctx *gin.Context) {
 }
 
 func UpdateAutomationSubstitutionHandler(ctx *gin.Context) {
-	//configResourceId := ctx.Param("id")
 	substitutionId := ctx.Param("substitution")
-	//fmt.Printf("config_id=%s,substitution_id=%s\n", configResourceId, substitutionId)
 
 	request := struct {
 		Entity       string                     `json:"entity" binding:"required"`
@@ -302,8 +288,6 @@ func UpdateAutomationSubstitutionHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//fmt.Printf("converted request=%+v\n", request)
-	//configuration serverlib.MODEL_PROVIDER.GetConfigurationByResourceID(configResourceId)
 	sub, err := serverlib.MODEL_PROVIDER.GetAutomationSubstitution(substitutionId)
 	if err != nil {
 		fmt.Printf("%s\n", err.Error())
@@ -312,19 +296,14 @@ func UpdateAutomationSubstitutionHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//fmt.Printf("sub=%+v\n", sub)
 	updateCollector := make([]types.AutomationDefinition, 0)
 	removeCollector := make([]*types.AutomationDefinition, 0)
-	//var updateCollector types.AutomationDefinition
 	for i := range len(sub.Definitions) {
 		definition := sub.Definitions[i]
 		if !definition.IsInitial {
 			removeCollector = append(removeCollector, &definition)
-			//request.Definition.Model = definition.Model
-			//updateCollector = append(updateCollector, request.Definition)
 			continue
 		}
-		//the initial definition remains as it
 		updateCollector = append(updateCollector, definition)
 	}
 
@@ -359,7 +338,6 @@ func UpdateAutomationSubstitutionHandler(ctx *gin.Context) {
 
 func UpdateConfigurationHandler(ctx *gin.Context) {
 	resourcesId := ctx.Param("id")
-	// get configuration from request
 	updateConfiguration := types.Configuration{}
 	err := ctx.ShouldBindJSON(&updateConfiguration)
 	if err != nil {
@@ -379,8 +357,6 @@ func UpdateConfigurationHandler(ctx *gin.Context) {
 		return
 	}
 
-	//update
-	// TODO: unshare?
 	updateConfiguration.Object = currentConfiguration.Object
 	updateConfiguration.Model = currentConfiguration.Model
 	updateConfiguration.ConfigurationSharedWith = currentConfiguration.ConfigurationSharedWith
@@ -445,7 +421,7 @@ func UpdateShareConfigurationHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//TODO: Auth model is never initialized in this module
+
 	userIDs, err := serverlib.AUTH_MODEL_DB.GetUsersByUsernames(request.SharedWithUsers)
 	sharedConfigurationsEntry := make([]types.ConfigurationSharedWith, 0)
 	for _, user := range userIDs {
@@ -868,7 +844,6 @@ func uploadSuppressedTopics(configuration *types.Configuration) error {
 }
 
 func uploadInterceptedTopics(configuration *types.Configuration) error {
-	//aging, an anonymous structure
 	request := struct {
 		Topics []struct {
 			Name           string                `json:"name"`
@@ -882,7 +857,7 @@ func uploadInterceptedTopics(configuration *types.Configuration) error {
 			InputTemplate  types.TemplateWrapper `json:"rule"`
 		}, 0),
 	}
-	// collect topics
+
 	for _, topic := range configuration.ErrorConfigurationStep.InterceptedTopics {
 		next := struct {
 			Name           string                `json:"name"`
@@ -933,9 +908,6 @@ func uploadInterceptedTopics(configuration *types.Configuration) error {
 
 func uploadEntities(configuration *types.Configuration) error {
 	for _, entity := range configuration.DeviceConfigurationStep.Entities {
-		//if !entity.UndoEntityConfigurationSet {
-		//	fetchUndoConfiguration(&entity)
-		//}
 
 		request, err := http.NewRequest(
 			"POST",
@@ -943,7 +915,6 @@ func uploadEntities(configuration *types.Configuration) error {
 			bytes.NewReader(entity.EntityConfiguration.JSON),
 		)
 		//fallback if domain and service are not provided
-		//TODO: feedback for failed configurations
 		if entity.Service == "" || entity.Domain == "" {
 			request, err = http.NewRequest(
 				"POST",
@@ -959,9 +930,7 @@ func uploadEntities(configuration *types.Configuration) error {
 		request.Header.Set("Content-Type", "application/json; charset=UTF-8")
 		request.Header.Set("Authorization", fmt.Sprintf("Bearer %s", serverlib.GATEWAY_CONFIG.SHH_TOKEN))
 		//TODO: consider https://forfuncsake.github.io/post/2017/08/trust-extra-ca-cert-in-go-app/
-		//tr := &http.Transport{
-		//	TLSClientConfig: &tls.Config{ServerName: "localhost"},
-		//}
+
 		tr := &http.Transport{
 			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		}
@@ -1095,8 +1064,6 @@ func CreateAutomationSubstitutionsHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//fmt.Printf("request:%+v\n", request)
-	//
 	configuration, err := serverlib.MODEL_PROVIDER.GetConfigurationByResourceID(configID)
 	if err != nil {
 		fmt.Println(err)
@@ -1105,11 +1072,8 @@ func CreateAutomationSubstitutionsHandler(ctx *gin.Context) {
 		})
 		return
 	}
-	//fmt.Printf("configuration:%+v\n", configuration)
-
 	substitution := types.NewAutomationSubstitution(request.Service, request.Entity, request.FriendlyName, &request.Definition)
 	substitution.RuleConfigurationStepID = configuration.RulesConfigurationStep.Model.ID
-	//fmt.Printf("substitution:%+v\n", substitution)
 	if err := serverlib.MODEL_PROVIDER.CreateAutomationSubstitution(substitution); err != nil {
 		fmt.Printf("%s\n", err.Error())
 		ctx.JSON(http.StatusInternalServerError, gin.H{
@@ -1147,7 +1111,6 @@ func GetAutomationSubstitutionHandler(ctx *gin.Context) {
 	if len(withoutInit) > 0 {
 		def = &withoutInit[0]
 	}
-
 	// unify responses and requests across all related handler function
 	response := struct {
 		Service      string                     `json:"service"`
@@ -1229,9 +1192,6 @@ func DeleteAutomationSubstitutionHandler(ctx *gin.Context) {
 }
 
 func ResetEntitiesHandler(ctx *gin.Context) {
-	// Retrieve the last device state from db
-	// deploy the last device state to shh
-
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "ok",
 		"detail":  "reset",
