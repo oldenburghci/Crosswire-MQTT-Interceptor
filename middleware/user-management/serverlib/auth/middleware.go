@@ -56,7 +56,6 @@ func RequestResourceAccess(remoteURL string, parameters ...string) gin.HandlerFu
 			return
 		}
 		// passed the resource check
-		//fmt.Println("access granted")
 	}
 }
 
@@ -132,7 +131,6 @@ func prepareRequest(ctx *gin.Context, remote *url.URL, method string, body *byte
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 	}
-	//fmt.Printf("body=%+v\n", body)
 	// set body explicitly to nil to avoid an error in the NewRequest() call
 	var request *http.Request
 	if body != nil {
@@ -172,7 +170,6 @@ func RequestAccessControlPolicyCheck(remoteURL string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		// it appears that as soon as a context is bound (e.g. through ShouldBind(...) method) it is also consumed and
 		// cannot be used again in consecutive requests or handler which yields an invalid request parsing result
-		//intermediateContext := ctx.Copy()
 		request := struct {
 			FullPath string `json:"fullPath,required"`
 			Method   string `json:"method,required"`
@@ -181,10 +178,6 @@ func RequestAccessControlPolicyCheck(remoteURL string) gin.HandlerFunc {
 			Method:   ctx.Request.Method,
 		}
 
-		//if err := intermediateContext.ShouldBind(&request); err != nil {
-		//	ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"message": "malformed request body"})
-		//	return
-		//}
 		fmt.Printf("received request %v\n", request)
 
 		marshaled, err := json.Marshal(&request)
@@ -259,15 +252,6 @@ func ValidateJWT() gin.HandlerFunc {
 
 func SecurityHeaders(acceptHost string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		//TODO: make it work!
-		//if ctx.Request.Host != acceptHost {
-		//	ctx.AbortWithStatusJSON(
-		//		http.StatusBadRequest,
-		//		gin.H{"error": "Invalid host header"},
-		//	)
-		//	return
-		//}
-
 		ctx.Header("X-Frame-Options", "DENY")
 		ctx.Header("Content-Security-Policy", "default-src 'self'; connect-src *; font-src *; script-src-elem * 'unsafe-inline'; img-src * data:; style-src * 'unsafe-inline';")
 		ctx.Header("X-XSS-Protection", "1; mode=block")
