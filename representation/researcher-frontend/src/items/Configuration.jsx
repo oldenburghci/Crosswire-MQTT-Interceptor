@@ -1,12 +1,9 @@
 import ConfigurationStepper from "../navigation/ConfigurationStepper.jsx";
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useState} from "react";
 import {
-    Badge,
-    Button, CircularProgress, Divider,
+    CircularProgress, Divider,
     Grid2,
-    Stack,
     Toolbar,
-    Tooltip,
     Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -29,7 +26,6 @@ function prepareUpdateErrorConfigurationStep(
     for (const [key, value] of suppressedTopicsMap) {
         if (!value.state)
             continue;
-        // console.log(key, value);
         suppressedTopics.push({
             zigBeeID: key,
             topicName: value.topic
@@ -39,7 +35,6 @@ function prepareUpdateErrorConfigurationStep(
     for (const [key, value] of interceptedTopicsMap) {
         if (!value.state)
             continue;
-        // console.log(key, value);
         //config is a
         const pattern = value.config;
         pattern.forEach((interceptionPattern,k) => {
@@ -59,7 +54,6 @@ function prepareUpdateEntitiesConfigurationStep(
     entitiesMap = new Map(),
 ){
     const entityCollector = [];
-    // console.log("entitiesMap:")
     for (const [key, value] of entitiesMap) {
         const { service, domain, capabilities } = value;
         delete value.service;
@@ -137,14 +131,11 @@ export default function Configuration({
     }
 
    const updateAutomationRuleConfigurationStep = (initialized = [], updated = [], deleted=[]) => {
-        // console.log('initialized: ', initialized, " updated: ", updated, " deleted: ", deleted);
         const promises = [];
         //only one new item is possible the way the interaction is realized currently. It is therefore safe to
         //set the received key onto the first item in initialized
         const initsWithKey = [];
-        // if (initialized.length > 0 || updated.length > 0 || deleted.length > 0) { setLoadAutomations(()=>true) }
         for ( const init of initialized) {
-            // console.log(init)
             const { service, entityId, friendlyName, definition } = init.toMessage(init);
             const p = axios.post(
                 `middleware/api/configuration/${configurations[activeConfiguration].key}/automation`,
@@ -169,7 +160,6 @@ export default function Configuration({
             promises.push(p);
         }
         for ( const update of updated ) {
-            // console.log(update)
             const { service, entityId, friendlyName, definition, key } = update.toMessage(update);
            const p = axios.put(
                 `middleware/api/configuration/${configurations[activeConfiguration].key}/automation/${key}`,
@@ -187,7 +177,6 @@ export default function Configuration({
            promises.push(p);
         }
         for (const d of deleted) {
-            // console.log(d)
             const { key } = d;
             // added but not uploaded ??
             if (key === undefined) continue;
@@ -202,7 +191,6 @@ export default function Configuration({
         Promise.allSettled(promises).then(() => {
             const automations = new Map()
             const merged = [ ...initsWithKey, ...updated];
-            // console.log(merged);
             merged.forEach((value, _) => {
                 automations.set(value.entityId, value);
             })
@@ -247,14 +235,14 @@ export default function Configuration({
                 }
             }
         ).then((response) => {
-            // console.log(response);
+
         }).catch((error) => {
             console.error(error);
         })
     }
 
     const updateEntitiesConfigurationStep = (entitiesMap = new Map()) => {
-        // console.log('update entities configuration');
+
         const prepared = prepareUpdateEntitiesConfigurationStep(entitiesMap);
 
         axios.put(
@@ -262,7 +250,6 @@ export default function Configuration({
             {
                 deviceConfigurationStep: {
                     type: "entities",
-                    // ready: completedSteps[0],
                     ready: true,
                     entities: prepared
                 }
@@ -301,9 +288,7 @@ export default function Configuration({
             }
         ).then((response) => {
             const { data } = response;
-            // console.log(data);
             const completed = {}
-            // setFriendlyName(data.friendlyName);
             // we manually enrich the received the data with labels and tooltips
             // the data is picked up by the ConfigurationStepper component later on
             data.deviceConfigurationStep.label = 'Device Configurations';
@@ -323,7 +308,6 @@ export default function Configuration({
             // --- Device/Entities configuration step ---
             const loadedEntitiesMap = new Map()
             for (const entity of data.deviceConfigurationStep.entities) {
-                // console.log(entity);
                 const merged  = {
                     domain : entity.domain,
                     service: entity.service,
@@ -349,16 +333,13 @@ export default function Configuration({
                     currentDefinition : (definitions.length !== 1) ? definitions[1] : definitions[0],
                 });
             }
-            // console.log("initial loaded automations=",loadedAutomations)
             // --- Error configuration step ---
             const initSuppressedTopicsMap = new Map()
             for (const { zigBeeID, topicName } of data.errorConfigurationStep.suppressedTopics) {
                 initSuppressedTopicsMap.set(zigBeeID, { state: true ,topic: topicName})
             }
             const initInterceptedTopicsMap = new Map();
-            // console.log('loading intercepted topics');
             for (const { zigBeeID, topicName, template, rule } of data.errorConfigurationStep.interceptedTopics ) {
-                // console.log(zigBeeID, topicName, template, rule);
                 //we ignore the interception mode for now
                 //config is an array
                 const entry = initInterceptedTopicsMap.get(zigBeeID);
@@ -383,7 +364,6 @@ export default function Configuration({
 
                 const promise = factoryChain.handle(domain, k, json).then(
                     (result) => {
-                        // console.log(result);
                         if( result !== undefined )
                             collector.set(k ,result);
                     }
@@ -391,8 +371,6 @@ export default function Configuration({
                 promises.push(promise);
             }
             Promise.allSettled(promises).then(() => {
-                // console.log('all promises settled');
-                // console.log(collector);
                 setEntitiesMap(()=>collector);
             })
             return loadedAutomations
@@ -404,7 +382,6 @@ export default function Configuration({
             loadedAutomations.forEach((value, key, _) => {
                 const p = factoryChain.handle("automation", key, value).then(
                     (result) => {
-                        // console.log("factory result automation=", result)
                         if (result !== undefined)
                             collector.set(key ,result);
                     }
@@ -499,10 +476,6 @@ export default function Configuration({
             if (response.status === 202) {
                 // the request is accepted but the scan is not done yet.
                 console.log("network scan in progress...");
-                // setTimeout(()=>{
-                //     console.log('10s later. request results from network scan again...');
-                //     requestNetworkScan();
-                // }, 10000)
                 return
             }
             console.log(response);
@@ -599,7 +572,6 @@ export default function Configuration({
             setActiveMenuIndex(()=>-1);
             reloadConfigurations();
         }).catch((error)=> {
-            //TODO: feedback
             console.error(error);
         })
     }
@@ -636,7 +608,6 @@ export default function Configuration({
                                         (items, domain)=>{
                                             //the received items are valid to be uploaded into the persistence layer
                                             const itemsMap = new Map();
-                                            // console.log('items ', items, '\ndomain', domain);
                                             //from other editors
                                             for (const [entityId, entity] of entitiesMap) {
                                                 //discard items from the same domain, otherwise 'delete' updates will have no effect
@@ -648,17 +619,11 @@ export default function Configuration({
                                             });
                                             const updateMap = new Map(itemsMap);
                                             updateMap.forEach((item) => {
-                                                // console.log(item);
                                                 const m = item.toMessage();
                                                 updateMap.set(m.entity_id, m);
                                             })
-                                            // console.log('entitiesMap:', entitiesMap, '\nupdateMap: ', updateMap);
-
-                                            // console.log('entities map: ', entitiesMap);
-                                            // console.log('transformed to: ', itemsMap);
                                             setEntitiesMap(()=>itemsMap);
                                             updateEntitiesConfigurationStep(updateMap);
-                                            // setLightsUpdate(()=>itemsMap);
                                         }
                                     }
                                 />
@@ -674,11 +639,6 @@ export default function Configuration({
                                         }
                                     }
                                 />
-                                // <Stack direction="row" spacing={2}>
-                                //     <AutomationRulesEditor/>
-                                //     {/*<RulesEditor/>*/}
-                                //     {/*<RuleSubstitutionEditor/>*/}
-                                // </Stack>
                             )}
                             {(activeStep === 2) && (
                                 <ErrorConfigurationEditor
@@ -688,9 +648,6 @@ export default function Configuration({
                                     interceptedTopicsMap={interceptedTopicsMap}
                                     setInterceptedTopicsMap={setInterceptedTopicsMap}
                                     onUpdate={()=>{
-                                        // console.log(entitiesMap);
-                                        // console.log('in Configuration');
-                                        // console.log(suppressedTopicsMap, interceptedTopicsMap);
                                         updateErrorConfigurationStep();
                                     }}
                                     scanRequested={scanInProgress}

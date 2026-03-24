@@ -43,7 +43,6 @@ const createSwitchItem = async (entityId="", previous=null) => {
         result.toMessage = toMessage;
         result.fromMessage = fromMessage;
         result.alignPrevious = alignPrevious;
-        // console.log('from previous: ', previous, result);
         return result;
     }
 
@@ -51,17 +50,14 @@ const createSwitchItem = async (entityId="", previous=null) => {
         `/api/states/${entityId}`
     ).then((response) => {
         const { entity_id, attributes, state } = response.data;
-        // console.log(attributes, state);
         result = {  ...result, ...result.fromMessage(attributes, state)};
         result.entityId = entity_id;
         result.toMessage = toMessage;
         result.fromMessage = fromMessage;
         result.alignPrevious = alignPrevious;
-        // console.log('from remote: ', result)
     }).catch((error) => {
         console.log(error);
     });
-    // console.log(result);
     return result;
 }
 

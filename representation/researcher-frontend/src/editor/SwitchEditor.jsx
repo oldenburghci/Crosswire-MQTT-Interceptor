@@ -28,11 +28,9 @@ export default function SwitchEditor(
     }
 
     const onDelete = (data, entityId) => {
-        // console.log(data);
         const i = data.findIndex((item)=> item.entityId === entityId);
         if (i === -1) return;
         const update = [...data.slice(0, i), ...data.slice(i + 1)];
-        // console.log('updated switchItems:', update);
         setSwitchItems(()=>new Array(...update));
     }
 
@@ -106,7 +104,6 @@ export default function SwitchEditor(
             >
                 <Grid2 size={12}>
                     <Stack direction="row" spacing={2} sx={{ justifyContent: "flex-start" }}>
-                        {/*TODO: Improve Icon*/}
                         <VerticalSwitchIcon/>
                         <Typography variant="h5" component="div">Switches</Typography>
                     </Stack>
@@ -117,19 +114,6 @@ export default function SwitchEditor(
                     (switchItems.length > 0) && switchItems.map((item, index) => (
                         <Grid2 size={3} key={`edit-switch-${index}`}>
                              <SwitchStateItem
-
-                                //     friendlyName={item.friendlyName}
-                                //     // key={index}
-                                //     setOn={
-                                //         (v)=>{
-                                //             setOn(v, index);
-                                //     }
-                                // }
-                                // on={item.on}
-                                // onDelete={()=>{
-                                //     onDelete(item.entityId);
-                                // }}
-                                // isReadOnly={false}
                                  props={{ data: switchItems, index: index}}
                              />
                         </Grid2>

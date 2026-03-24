@@ -1,4 +1,4 @@
-import {Box, ListItem, Skeleton, Stack} from "@mui/material";
+import {Box, Skeleton, Stack} from "@mui/material";
 import {FixedSizeList} from "react-window";
 import TopicListItem from "./TopicsListItem.jsx";
 

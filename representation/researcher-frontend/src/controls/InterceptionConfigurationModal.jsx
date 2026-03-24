@@ -1,8 +1,7 @@
-import {Box, Button, Divider, Grid2, InputAdornment, Modal, Stack, TextField, Tooltip} from "@mui/material";
+import {Box, Button,  Grid2, InputAdornment, Modal, Stack, TextField, Tooltip} from "@mui/material";
 import {East, West} from "@mui/icons-material";
 import JsonView from "react18-json-view";
-// import '../editor/EntityConfigurationEditor.css';
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import modalStyles from "../items/ModalStyles.jsx";
 const myModalStyles = { ...modalStyles, width: '80%', maxWidth: 600 };
 
@@ -63,7 +62,6 @@ export default function InterceptionConfigurationModal({
 
     const handleChange = (event) => {
         event.persist();
-        // console.log("Something is changed in the textarea");
         setTopic(() => event.target.value);
     }
 
@@ -71,9 +69,6 @@ export default function InterceptionConfigurationModal({
         event.persist();
         setPlainTemplate(()=>event.target.value);
     }
-
-    // const optimisedHandleChange = debounce(handleChange,1000);
-    // const optimisedHandlePlainTemplateChange = debounce(handlePlainTemplateChange, 1000);
 
     return (
         <Modal

@@ -62,8 +62,6 @@ export default function DevicesEditor(
             renderCell: (params)=>{
                 const { value, row } = params;
                 const treeviewApiRef = useTreeViewApiRef();
-                // console.log(params);
-                // const id = 0
                 const children = row.entities.map((entity) => {
                     return { id: entity, label: entity };
                 })
@@ -121,10 +119,6 @@ export default function DevicesEditor(
                     slotProps={{
                         item: {
                             //illustrate how to forward a property to a tree item
-                            // randomNumber : Math.floor(Math.random() * 10),
-                            // selectedEntities: selectedEntitiesMap,
-                            // setSelectedEntitiesMap: setSelectedEntitiesMap,
-                            // checked: false,
                             onEntityClicked: onEntityClicked,
                             selectedEntitiesMap: selectedEntitiesMap,
                             editedEntitiesMap: editedEntitiesMap,
@@ -148,7 +142,7 @@ export default function DevicesEditor(
                     onItemSelectionToggle={
                         // this entity is selected but not yet checked
                         (event, itemId, isSelected)=>{
-                            if(itemId === 'root' /*|| !isSelected*/)
+                            if(itemId === 'root' )
                                 return;
                             console.log('toggled!')
                             onEntityClicked({entityId: itemId});
@@ -215,11 +209,9 @@ export default function DevicesEditor(
                     //apply filter for confusing devices
                     const index = filterWords.findIndex(
                         (element) => {
-                            // console.log({'device.model.toLowerCase()' : device.model.toLowerCase(), 'element': element})
                             return device.model.toLowerCase() === element;
                         }
                     );
-                    // // console.log(index)
                     if (index !== -1) {
                         deactivated.push(device);
                         continue;
@@ -279,7 +271,6 @@ export default function DevicesEditor(
     }, [devices]);
 
     return <>
-        {/*<Box sx={{width: '100%', overflow: 'none '}}>*/}
             <Box sx={{ m:1}}>
                 <Typography>Select Devices</Typography>
                 <StyledDataGrid
@@ -291,7 +282,6 @@ export default function DevicesEditor(
                         },
                     }}
                     apiRef={gridApiRef}
-                    // checkboxSelection
                     rows={devices}
                     columns={columns}
                     loading={loading}
@@ -306,10 +296,6 @@ export default function DevicesEditor(
                             for (const [ key, value ] of selectedRows){
                                 selectedEntities.push(...value.entities)
                             }
-
-                            // useEntityConfigurationStore.getState().setEntityConfigurationsSelectedArray(selectedEntities);
-                            // //forward the current selection for update operations
-                            // useEntityConfigurationStore.getState().setDevicesSelectedMap(selectedRows);
                         }
                     }
                     sx={

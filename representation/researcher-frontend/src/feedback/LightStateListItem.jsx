@@ -52,9 +52,6 @@ export default function LightStateListItem(props) {
                 columnSpacing={0.5}
             >
                 {/*Indicator Icon*/}
-                {/*<Grid2 size={1}>*/}
-                {/*    <East/>*/}
-                {/*</Grid2>*/}
                 <Grid2 size={11}>
                     <Paper
                         elevation={8}

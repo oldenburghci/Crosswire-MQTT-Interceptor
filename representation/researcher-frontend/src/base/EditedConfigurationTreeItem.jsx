@@ -1,6 +1,5 @@
 import {forwardRef, useEffect, useState} from "react";
 import {
-    TreeItem2,
     TreeItem2Content, TreeItem2GroupTransition,
     TreeItem2Icon,
     TreeItem2IconContainer, TreeItem2Label,
@@ -8,23 +7,10 @@ import {
     TreeItem2Root, useTreeItem2Utils
 } from "@mui/x-tree-view";
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import AdjustIcon from '@mui/icons-material/Adjust';
 import { useTreeItem2 } from '@mui/x-tree-view/useTreeItem2';
 import {Checkbox, IconButton, Stack, Tooltip} from "@mui/material";
-import useEntityConfigurationStore from "../stores/EntityConfigurationStore.jsx";
-import {CheckBox} from "@mui/icons-material";
-import {runInContext as editedEntitiesMap} from "lodash";
 
 const EditedConfigurationTreeItem = forwardRef(function CustomTreeItem(
-    // {
-    //     id,
-    //     itemId,
-    //     label,
-    //     checked,
-    //     children,
-    //     randomNumber
-    // },
     props,
     ref
 ) {
@@ -37,9 +23,7 @@ const EditedConfigurationTreeItem = forwardRef(function CustomTreeItem(
         getLabelProps,
         getGroupTransitionProps,
         getIconContainerProps,
-        getLabelInputProps,
         status
-        // } = useTreeItem2({ id, itemId, label, children, rootRef: ref });
     }= useTreeItem2(props);
 
 
@@ -68,9 +52,6 @@ const EditedConfigurationTreeItem = forwardRef(function CustomTreeItem(
                     {(children === null) ? (
                     <Stack
                         direction="row"
-                        // onHover={()=>{
-                        //     console.log('Listitem hovered!');
-                        // }}
                     >
                         {
                             <Tooltip title={(configurationSelected) ? "This entity is part of the Configuration": "This entity is not part of the Configuration" } sx={{m:0, p:0}}>
@@ -86,12 +67,6 @@ const EditedConfigurationTreeItem = forwardRef(function CustomTreeItem(
                             </Tooltip>
 
                         }
-
-                        {/*{ (configurationSelected) ? (*/}
-                        {/*    <Tooltip title={"The entity configuration has been selected and will be uploaded to the smart home backend."}>*/}
-                        {/*        <CheckCircleIcon color="primary" size="small" />*/}
-                        {/*    </Tooltip>*/}
-                        {/*) : <></>}*/}
                         { (configurationEdited) ?  (
                             <Tooltip title={"The entity configuration has been edited."}>
                                 <ModeEditOutlineIcon color="primary" size="small" />
@@ -99,12 +74,9 @@ const EditedConfigurationTreeItem = forwardRef(function CustomTreeItem(
                         ) : <></>}
                     </Stack>
                     ) : <></>}
-                    {/*<Tooltip title={"Click on the label to load the current configuration for this entity into the 'Entity Configurations' editor."}>*/}
                         <TreeItem2Label {...getLabelProps()}/>
-                    {/*</Tooltip>*/}
-
                 </TreeItem2Content>
-                {/*The children*/}
+
                 { children && <TreeItem2GroupTransition {...getGroupTransitionProps()} />}
             </TreeItem2Root>
 

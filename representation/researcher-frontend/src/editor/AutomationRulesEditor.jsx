@@ -1,8 +1,7 @@
 import {
-    Box,
     CircularProgress,
     Divider,
-    Grid2, Modal,
+    Grid2,
     Paper,
     Stack,
     Typography
@@ -17,11 +16,8 @@ import AddDeviceButton from "../base/AddDeviceButton.jsx";
 import "../base/TopicsListItem.css";
 import {animated, useSpring} from "@react-spring/web";
 import {factoryChain} from "../factories/FactoryChain.js";
-import JsonView from "react18-json-view";
 import 'react18-json-view/src/style.css'
 import './EntityConfigurationEditor.css'
-import modalStyles from "../items/ModalStyles.jsx";
-import ModalHeader from "../base/ModalHeader.jsx";
 import AutomationRuleModal from "../items/AutomationRuleModal.jsx";
 
 export default function AutomationRulesEditor(
@@ -154,7 +150,6 @@ export default function AutomationRulesEditor(
         });
         return collector;
     });
-    // console.log(selectedRules);
     // --- states ---
     const [allAutomations, setAllAutomations] = useState(new Map());
     const [options, setOptions] = useState([]);
@@ -221,10 +216,6 @@ export default function AutomationRulesEditor(
 
     const shrinkProps = useSpring({
         size: 11.0
-        // size: (activeControlElement.controlElement === 5) ? 0.0 : 7.2,
-        // from: {
-        //     size: (activeControlElement.controlElement === 5) ? 7.2 : 0.0
-        // }
     })
     const style = { display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' };
 
@@ -258,7 +249,6 @@ export default function AutomationRulesEditor(
                 ) : <CircularProgress color="primary"/>}
             </Grid2>
             <AnimatedGrid2
-                // style={{...shrinkProps}}
                 size={7.2}
                 sx={{mb: 1, ml:1}}
                 className={(selectedRules.length % 2 === 0 ) ? "RowEven" : "RowOdd"}

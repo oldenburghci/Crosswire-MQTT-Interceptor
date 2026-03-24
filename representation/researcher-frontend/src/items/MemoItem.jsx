@@ -5,10 +5,8 @@ import {
     IconButton,
     ListItem,
     ListItemText,
-    Stack,
     TextField,
     Tooltip,
-    Typography
 } from "@mui/material";
 import React, {Fragment, useState} from "react";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
@@ -28,24 +26,6 @@ export default function MemoItem(
     const [updatedDescription, setUpdateDescription] = useState(item.desc);
 
     return  <ListItem alignItems={"flex-start"}>
-        {
-            // (createdBy !== undefined) && (
-            //     <Tooltip title={`Created by ${createdBy}`}>
-            //
-            //         <ListItemAvatar
-            //             // variant={"square"}
-            //             // sx={{ bgcolor: stringToColor(createdBy)}}
-            //         >
-            //             <Avatar
-            //                 // variant={"square"}
-            //                 sx={{bgcolor: stringToColor(createdBy)}}
-            //             >
-            //                 {`${createdBy[0]}${createdBy[3]}`}
-            //             </Avatar>
-            //         </ListItemAvatar>
-            //     </Tooltip>
-            // )
-        }
 
         <ListItemText
             sx={{m:1}}
@@ -55,7 +35,6 @@ export default function MemoItem(
                         <Grid2 size={11}>
                             {(!editEnabled) ? item.desc : (
                                 <TextField
-                                    // id={"label-memo-item"}
                                     required
                                     label={"Description"}
                                     variant="standard"
@@ -104,7 +83,6 @@ export default function MemoItem(
                                             ()=>{
                                                 setEditEnabled(()=>!editEnabled);
                                                 item.desc = updatedDescription;
-                                                // console.log(updatedDescription);
                                                 //Triggers update?
                                                 onUpdate(item);
                                             }

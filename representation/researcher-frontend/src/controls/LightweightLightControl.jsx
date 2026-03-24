@@ -17,18 +17,15 @@ export default function LightweightLightControl({
     brightness=0,
     setBrightness=(v)=>{}
 }) {
-    // console.log(initColor);
     const [color, setColor] = useColor(initColor);
     //internal states reduce the amount of updates in the parent component
     const [internalBrightness, setInternalBrightness] = useState(brightness);
     const [internalTransition, setInternalTransition] = useState(transition);
-    // console.log(data);
 
     return (
         <Paper
             elevation={4}
             sx={{
-                // width: 300,
                 minHeight: 300,
                 borderRadius: 4,
                 mx: 'auto',
@@ -86,7 +83,6 @@ export default function LightweightLightControl({
                                 },
                                 // Custom thumb
                                 '& .MuiSlider-thumb': {
-                                    // top: -5,
                                     width: 64,
                                     height: 0,
                                     borderRadius: 12,
@@ -120,13 +116,11 @@ export default function LightweightLightControl({
                                 '& .MuiSlider-track' : {
                                     bottom: "-5% !important",
                                     borderRadius: 5,
-                                    // transform: 'translateY(22%) translateX(-50%)',
                                     width: 80,
                                     bgcolor: color.hex,
                                     boxShadow: `0 0 12px 2px ${color.hex}` ,
                                     borderTopLeftRadius: 0,
                                     borderTopRightRadius: 0,
-                                    // paddingTop: '10%'
                                 }
                             }}
                             aria-label="Brightness"/>

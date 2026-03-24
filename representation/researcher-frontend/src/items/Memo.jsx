@@ -43,8 +43,6 @@ function stringToColor(string) {
 
 export default function Memo(
     {
-        // active = false,
-        // handleClose = (flag) => {},
         configurationID=0,
     }
 ) {
@@ -84,14 +82,12 @@ export default function Memo(
                 }
             }
         ).then((response) => {
-            // console.log(response);
         }).catch((error) => {
             console.error(error);
         })
     }
 
     const onNewItemClick = () => {
-        // items.push({  })
         if (!memo) return;
 
         const item = { desc: "New Memo/TODO", checked: false }
@@ -120,9 +116,6 @@ export default function Memo(
 
         axios.delete(
             `/middleware/api/memo/${memo.key}/items`,
-            // {
-            //     items: [ item ]
-            // },
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -140,11 +133,9 @@ export default function Memo(
             console.error(error);
         })
     }
-
     // --- Effects ---
     // update
     useEffect(()=>{
-        // console.log("update memo items")
         updateMemo();
     }, [items]);
 
@@ -159,13 +150,8 @@ export default function Memo(
                 }
             }
         ).then((response) => {
-                // console.log(response.data);
                 const { memo } = response.data;
                 const itemCollector = memo.items;
-                // for( const item of memo.items){
-                //     const { desc, checked } = item;
-                //     itemCollector.push({desc, checked});
-                // }
                 setItems(()=>itemCollector);
                 setMemo(()=>memo);
             }
@@ -210,7 +196,6 @@ export default function Memo(
                                             key={`memo-item-${configurationID}-${index}`}
                                             checked={checked}
                                             setChecked={(next)=>{
-                                                // console.log(next);
                                                 items[index].checked = next;
                                                 setItems([...items]);
                                             }}

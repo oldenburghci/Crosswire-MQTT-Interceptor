@@ -32,23 +32,13 @@ export default function EntityConfigurationEditor(
         setEditedEntitiesMap = (map) => {},
     }
 ) {
-    // console.log(selectedEntitiesMap);
     //updates the internal data structure as soon as a change has been detected
     const onChangeHandler = (event) => {
-        // console.log('configuration changed')
         //update map
         const configurations = new Map(editedEntitiesMap)
-        //TODO: this might backfire if the user decides to remove the entry_id from the json
         configurations.set(event.src.entity_id, event.src)
         setEditedEntitiesMap(configurations);
         // select automatically if the checkbox is not set
-        // const isInSelected = selectedEntitiesMap.has(event.src.entity_id)
-        // // const config = selectedEntitiesMap.get(event.src.entity_id)
-        // if (!isInSelected) {
-        //     selectedEntitiesMap.set(event.src.entity_id, event.src)
-        //     setSelectedEntitiesMap(new Map(selectedEntitiesMap))
-        // }
-        // console.log(configurations);
         setEdited(()=>true);
     }
 
@@ -100,25 +90,11 @@ export default function EntityConfigurationEditor(
         }
 
     }, [entity]);
-    // console.log(domain);
 
     return <>
         <StyledBox sx={{m:2, overflow: 'auto', maxHeight: '80%', width:400}}>
             <Typography> Edit Entity Configuration</Typography>
             <Grid2 container spacing={2} sx={{margin: 1}}>
-            {/*    <Grid2 size={8} />*/}
-            {/*    <Grid2 size={4}>*/}
-            {/*    {*/}
-            {/*        (edited) && (*/}
-            {/*            <Tooltip title={"Reset this configuration."}>*/}
-            {/*                <IconButton onClick={ (event) => resetConfigurationHandler(event) }>*/}
-            {/*                    <HistoryIcon size={"small"} color={"primary"}/>*/}
-            {/*                </IconButton>*/}
-            {/*            </Tooltip>*/}
-            {/*        )*/}
-            {/*    }*/}
-            {/*    </Grid2>*/}
-
             </Grid2>
             {
                 (domain === "light") && (
@@ -141,15 +117,6 @@ export default function EntityConfigurationEditor(
                     />
                 )
             }
-            {/*// ) : (<>*/}
-            {/*//         <h5>Nothing here, did you tick the checkbox?</h5>*/}
-            {/*//         <Skeleton*/}
-            {/*//             variant="rectangular"*/}
-            {/*//             width={"100%"}*/}
-            {/*//             height={100}*/}
-            {/*//         />*/}
-            {/*//     </>*/}
-            {/*// )}*/}
         </StyledBox>
     </>
 }

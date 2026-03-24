@@ -1,28 +1,21 @@
 import {
-    Button, ButtonGroup,
     Chip,
     CircularProgress,
     Divider,
-    Grid2, Grow,
-    IconButton,
-    Paper, Popper,
+    Grid2,
+    Paper,
     Stack,
-    Tooltip,
     Typography
 } from "@mui/material";
 import TopicsList from "../base/TopicsList.jsx";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import useCredentialStore from "../stores/CredentialStore.jsx";
 import axios from "axios";
-import {HelpOutlined, Lightbulb} from "@mui/icons-material";
+import { Lightbulb} from "@mui/icons-material";
 import DeployedEntitiesList from "../feedback/DeployedEntitiesList.jsx";
 import VerticalSwitchIcon from "../icons/VerticalSwitchIcon.jsx";
-import SwitchStateItem from "../base/SwitchStateItem.jsx";
 import SwitchStateListItem from "../feedback/SwitchStateListItem.jsx";
-import {config} from "@react-spring/web";
-import AutomationRuleListItem from "./AutomationRuleListItem.jsx";
 import AutomationRuleStateListItem from "../feedback/AutomationRuleStateListItem.jsx";
-import {ArrowDropDownIcon} from "@mui/x-date-pickers";
 import SplitButton from "../base/SplitButton.jsx";
 import useApplicationStore from "../stores/ApplicationStore.jsx";
 
@@ -40,7 +33,6 @@ export default function RunConfiguration(
 
     const [ undoOption ] = useState(["All", "Automations", "Suppressed Topics", "Intercepted Topics"]);
     const [ undoLoading, setUndoLoading ] = useState(null);
-    //TODO: Write handler to implement the rollback functionality
 
     const [ releaseSuppressedLoading, setReleaseSuppressedLoading ] = useState(false);
     const [ releaseInterceptedLoading, setReleaseInterceptedLoading ] = useState(false);
@@ -72,8 +64,6 @@ export default function RunConfiguration(
             console.log(response);
             setDeployLoading(()=>false);
         }).catch(()=>setDeployLoading(()=>false));
-
-        // setTimeout(()=>{setDeployLoading(()=>false);}, 2000);
     }
 
     const onUndoClicked = (option) => {
@@ -81,7 +71,6 @@ export default function RunConfiguration(
             onClickReleaseSuppressedTopics();
             onClickReleaseInterceptedTopics();
             resetAutomations();
-            //TODO: restore entities
         }
 
         if (option === "Suppressed Topics")
@@ -90,7 +79,6 @@ export default function RunConfiguration(
             onClickReleaseInterceptedTopics();
         if (option === "Automations")
            resetAutomations();
-        //TODO: restore entities
     }
 
     const onClickReleaseSuppressedTopics = () => {
@@ -137,10 +125,6 @@ export default function RunConfiguration(
                 },
             }
         ).then((response) => {
-            //handle not released topics
-            // setTimeout(()=>{
-            //     setReleaseInterceptedLoading(()=>false);
-            // },2000);
         }).catch((error) => {
             console.error(error);
         }).finally(()=>{
@@ -178,7 +162,6 @@ export default function RunConfiguration(
 
     // --- Effects ---
     useEffect(() => {
-        // console.log('load');
         if (!token)
             return;
         setLoadTopics(()=>true);
@@ -215,7 +198,6 @@ export default function RunConfiguration(
         ).then((response) => {
             const { topics } = response.data;
             alreadyIntercepted.push(...topics.map((t) => { return t.name }));
-            // setAlreadyInterceptedTopics(()=>alreadyIntercepted);
         }).catch((error) => {
             console.error(error);
         });
@@ -231,8 +213,6 @@ export default function RunConfiguration(
             const { friendlyName, by } = response.data;
             lastConfiguration.friendlyName = friendlyName;
             lastConfiguration.by = by;
-            // setLastConfigurationDeployedBy(()=>by);
-            // setLastConfigurationDeployed(()=>friendlyName);
         }).catch((error)=> console.error(error));
 
        Promise.allSettled([interceptedPromise, lastConfigurationPromise, suppressedPromise]).then(()=>{
@@ -260,9 +240,7 @@ export default function RunConfiguration(
                //skip if deactivated
                if (value.state === false) continue;
                const { config } = value;
-               // console.log(value);
                const p = config.map((item, i) => {
-                   // console.log(item);
                    return {
                        topic: item.topic,
                        template: item.template,
@@ -355,7 +333,6 @@ export default function RunConfiguration(
                             }}
                         >
                             <Stack direction="row" spacing={2} sx={{ justifyContent: "flex-start" }}>
-                                {/*TODO: Improve Icon*/}
                                 <Lightbulb/>
                                 <Typography variant="h5" component="div">Lights</Typography>
                                 <Divider/>
@@ -397,7 +374,6 @@ export default function RunConfiguration(
                     <Grid2 size={12} spacing={1}>
                         <Paper elevation={6} sx={{ borderRadius: 4, p:2  }}>
                             <Stack direction="row" spacing={2} sx={{ justifyContent: "flex-start" }}>
-                                {/*TODO: logo wanted*/}
                                 <Typography variant="h5" component="div"> Automations </Typography>
                                 <Divider/>
                             </Stack>
@@ -418,28 +394,20 @@ export default function RunConfiguration(
                             }
                         </Paper>
                     </Grid2>
-
                 </Grid2>
-
-
                 {/*Topics*/}
                 <Grid2 size={12} sx={{mt:2}} container spacing={1}>
-                    {/*<Divider sx={{mt: 1, mb: 1}} />*/}
                     <Grid2  size={5}>
-                        {/*<Stack*/}
-                        {/*    spacing={2}*/}
-                        {/*    direction="column"*/}
-                        {/*>*/}
-                            <Paper
-                                elevation={6}
-                                sx={{
-                                    borderRadius: 4,
-                                    p:1
-                                }}
-                            >
-                                <Typography variant="h5" textAlign="left" sx={{ml:4, mt: 1, mb: 1}}> Suppressed Topics: </Typography>
-                                <TopicsList items={suppressedTopicsList} loading={releaseSuppressedLoading || loadTopics}/>
-                            </Paper>
+                        <Paper
+                            elevation={6}
+                            sx={{
+                                borderRadius: 4,
+                                p:1
+                            }}
+                        >
+                            <Typography variant="h5" textAlign="left" sx={{ml:4, mt: 1, mb: 1}}> Suppressed Topics: </Typography>
+                            <TopicsList items={suppressedTopicsList} loading={releaseSuppressedLoading || loadTopics}/>
+                        </Paper>
                     </Grid2>
                     <Grid2 size={7}>
                         <Paper
@@ -453,7 +421,6 @@ export default function RunConfiguration(
                             <TopicsList items={interceptedTopicsList} loading={releaseInterceptedLoading || loadTopics}/>
                         </Paper>
                     </Grid2>
-                    {/*</Stack>*/}
                 </Grid2>
             </Grid2>
         </>

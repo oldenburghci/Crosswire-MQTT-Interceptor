@@ -4,7 +4,7 @@ import {
     Box,
     Button,
     Container, Divider,
-    Grid2, ListItemIcon,
+    ListItemIcon,
     Menu,
     MenuItem,
     Stack,
@@ -50,7 +50,6 @@ export default function TopNavigation(props) {
             }
         ).then((response) => {
             const { username, email } = response.data;
-            // console.log(user);
             setCurrentUser(()=>{return {username: username, email: email}});
             setInitialUser(()=>{return {username: username, email: email}});
         }).catch((error) => {
@@ -97,7 +96,6 @@ export default function TopNavigation(props) {
 
                             <MenuItem
                                 onClick={()=>{
-                                    // useCredentialStore.setState()
                                     // do remote request to invalid the token
                                     setToken(null);
                                 }}

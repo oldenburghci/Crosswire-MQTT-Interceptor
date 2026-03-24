@@ -6,7 +6,6 @@ import {
     ListItemText,
     Menu,
     MenuItem,
-    Tooltip,
     Typography
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/Inbox";
@@ -45,7 +44,6 @@ export default function ConfigurationDrawerItem(
                 />
             </ListItemButton>
             {/*More options button*/}
-            {/*<Tooltip title={"More Options"}>*/}
             {(isSelected) && (
                 <IconButton
                     size="medium"
@@ -86,19 +84,6 @@ export default function ConfigurationDrawerItem(
                                 horizontal: -25,
                             }}
                         >
-                            {/*{*/}
-                            {/*    ['Edit', 'Run', 'Rename', 'Share'].map((item, jndex)=>{*/}
-                            {/*        return (*/}
-                            {/*        <MenuItem*/}
-                            {/*            onClick={() => {*/}
-                            {/*                handleConfigurationDrawerMenuItemClicked(jndex);*/}
-                            {/*            }}*/}
-                            {/*        >*/}
-                            {/*            {item}*/}
-                            {/*        </MenuItem>*/}
-                            {/*        )*/}
-                            {/*    })*/}
-                            {/*}*/}
                             <MenuItem
                                 onClick={
                                     () => {
@@ -132,7 +117,6 @@ export default function ConfigurationDrawerItem(
                         </Menu>
 
                 </IconButton>)}
-            {/*</Tooltip>*/}
         </ListItem>
     )
 }

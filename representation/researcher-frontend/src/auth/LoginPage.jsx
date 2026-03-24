@@ -21,7 +21,6 @@ const css = {
 };
 
 export default function LoginComponent(props={
-    // login: false,
     setLogin: () => {}
 }) {
 
@@ -122,19 +121,6 @@ export default function LoginComponent(props={
                             )}
                     </Grid2>
                     <Grid2 item xs={12}>
-                        {/*<FormControlLabel*/}
-                        {/*    control={*/}
-                        {/*        <Checkbox*/}
-                        {/*            checked={false}*/}
-                        {/*            onChange={()=>{}}*/}
-                        {/*            label={'Keep me logged in'}*/}
-                        {/*            inputProps={{ 'aria-label': 'primary checkbox' }}*/}
-                        {/*            tabIndex={4}*/}
-                        {/*        />*/}
-                        {/*    }*/}
-                        {/*    label="Keep me logged in"*/}
-                        {/*    tabIndex={-1}*/}
-                        {/*/>*/}
                     </Grid2>
                     <Grid2 item xs={12}>
                         <Button

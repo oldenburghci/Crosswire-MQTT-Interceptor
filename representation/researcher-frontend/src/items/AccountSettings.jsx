@@ -6,9 +6,8 @@ import {
     Button,
     Divider,
     FormControl, FormControlLabel,
-    FormLabel, Grid2,
-    InputLabel,
-    Modal, Stack,
+    Grid2,
+    Modal,
     TextField,
     Tooltip,
     Typography
@@ -63,7 +62,6 @@ export default function AccountSettings(
         setTimeout(()=>{
             setOpenSuccessModal(false);
             const setToken = useCredentialStore.getState().setToken;
-            //TODO: send message to invalidate session
             setToken(null);
             clearInterval(descriptor);
             setCountDown(5);
@@ -87,14 +85,11 @@ export default function AccountSettings(
                     }
                 }
             ).then((response) => {
-                // const { status } = response.data;
-                // console.log(status, response.status);
                 forceLogout("Password successfully changed.");
             }).catch((error) => {
                 if (error.response.status === 401) {
                     const { message } = error.response.data;
                     setPasswordErrorText(()=>message);
-                    // setValidatePassword(()=>false);
                 }
                 if (error.response.status === 400) {
                     const { message } = error.response.data;
@@ -117,7 +112,6 @@ export default function AccountSettings(
                 }
             ).then((response) => {
                 //show the success message
-                // const { message } = response.data;
                forceLogout("User information successfully changed.");
             }).catch((error) => {
                 if (error.response.status === 401) {
@@ -144,18 +138,8 @@ export default function AccountSettings(
             )
         );
         (!validatePassword) &&  setConfirmPasswordHelperText("The passwords must be equal and between 8 and 48 characters long.");
-        // console.log(passwordChanged )
-        // console.log(newPassword !== confirmPassword )
-        // console.log(newPassword.length !== confirmPassword.length )
-        // console.log(8 <= newPassword.length <= 48 )
-        // console.log(8 <= confirmPassword.length <= 48)
+
     }, [passwordChanged, currentPassword, newPassword, confirmPassword]);
-
-    // useEffect(()=>{
-    //     if (validatePassword) return;
-    //     setConfirmPasswordHelperText("The passwords must be equal and between 8 and 48 characters long.")
-    // }, [validatePassword]);
-
 
     return (
         <Modal
@@ -258,7 +242,6 @@ export default function AccountSettings(
                                             }
                                         }}
                                         onChange={ (event) => {
-                                            // setPasswordChanged(true)
                                             setCurrentPassword(event.target.value)
                                             setPasswordErrorText(()=>null);
                                         }}
@@ -381,7 +364,6 @@ export default function AccountSettings(
                             </Tooltip>
                         </Grid2>
                     </Grid2>
-                    {/*<ReactConfetti width={400} height={400}/>*/}
                     <Modal open={openSuccessModal}>
                         <Box sx={modalStyles} className={"modal-box"}>
                             <Box sx={{m:1}}>

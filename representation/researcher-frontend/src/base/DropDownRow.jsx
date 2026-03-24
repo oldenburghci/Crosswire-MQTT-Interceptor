@@ -11,7 +11,6 @@ export default function DropDownRow(props={
         'Rule Y_3'
     ]
 }) {
-    // console.log(props);
     const [ originalRule, setOriginalRule ] = useState(props.originalRule);
     const [ substitutionRule, setSubstitutionRule ] = useState(props.options[0]);
 
@@ -21,7 +20,6 @@ export default function DropDownRow(props={
 
     const handleChange = (event) => {
         setSubstitutionRule(event.target.value);
-        // console.log(substitutionRule);
     }
 
 
@@ -47,7 +45,6 @@ export default function DropDownRow(props={
                             )
                         })
                     }
-                    {/*<MenuItem value={substitutionRule}><b>{substitutionRule}</b></MenuItem>*/}
                 </Select>
             </FormControl>
         </TableCell>

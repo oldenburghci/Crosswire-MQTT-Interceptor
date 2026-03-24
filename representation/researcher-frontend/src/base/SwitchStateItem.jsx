@@ -1,7 +1,6 @@
 import {Box, IconButton, Paper, Stack, Switch, Tooltip, Typography} from "@mui/material";
 import {Delete} from "@mui/icons-material";
 import {animated, useSpring} from "@react-spring/web";
-import {useState} from "react";
 
 
 export default function SwitchStateItem ({

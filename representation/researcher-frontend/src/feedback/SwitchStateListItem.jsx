@@ -24,7 +24,6 @@ export default function SwitchStateListItem(props) {
                 direction="row"
                 spacing={2}
                 sx={{
-                    // pl: (!hideName) ? 2 : 0,
                     justifyContent: "flex-end",
                     alignItems: "center",
                     minWidth: 0
@@ -34,10 +33,6 @@ export default function SwitchStateListItem(props) {
                     sx={{
                         display: "flex",
                         justifyContent: "flex-end",
-                        // does not really add something to the style, but setting the width results in the
-                        // justifyContent property of the stack been applied
-                        // minWidth: 400,
-                        // width: 140
                     }}
                 >
                     {(!hideName) && (

@@ -238,7 +238,6 @@ export default function ErrorInjectionControl(
                                             conflictMessage: "No interference with other interceptions detected &#x1F44D;",
                                         });
                                         setInterceptionItems(()=>new Array(...current));
-                                        // console.log(interceptionItems);
                                     }}
                                 >
                                     <CardContent sx={{ maxHeight: 35 , height: 35, m:0, p:0.5 }}>
@@ -266,8 +265,6 @@ export default function ErrorInjectionControl(
                                 <Stack direction="column-reverse">
                                     {
                                         new Array(...interceptionItems).map((item, index) => {
-                                                // return (<Typography variant={"body2"}>[{index}] {item.topic} </Typography>)
-                                                // console.log(item);
                                                 return (<InterceptionConfigurationCard
                                                     key={`interception-pattern-${index}`}
                                                     initTopic={item.topic}

@@ -53,14 +53,6 @@ export default function SplitButton({
                     loading={loading}
                     onClick={
                         ()=>onClick(options[selectedIndex])
-                        // ()=>{
-                        //     // setDeployLoading(()=>true);
-                        //     // the updated state of the services is fetched as soon as this flag has been set.
-                        //     // We delay the operation by 2s to give the system time to sync before we fetch the current state
-                        //     // onRunClick().then(()=>
-                        //     //     setTimeout(()=> setDeployLoading(()=>false), 2000)
-                        //     // );
-                        // }
                     }
                 >
                     { (!loading) ? `${pretext} ${options[selectedIndex]}` : `Processing ${options[selectedIndex]}`}

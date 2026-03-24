@@ -25,35 +25,7 @@ const editorComponents = {
     configurations: ({params}) => {
         return <EntityConfigurationEditor {...params} />
     },
-    // iframeComponent: ({params}) => {
-    //
-    //     const [enabled, setEnabled] = useState(params.api.isActive);
-    //
-    //     useEffect(()=>{
-    //         console.log(params)
-    //         const disposable = params.api.onDidActivePanelChange((event) => {
-    //             setEnabled(event.isActive);
-    //             console.log(event);
-    //         })
-    //
-    //         return ()=>{
-    //             disposable.dispose();
-    //         }
-    //     }, [params.api]);
-    //
-    //     return <iframe
-    //         style={{
-    //             width: '100%',
-    //             height: '100%',
-    //             pointerEvents: enabled ? 'inherit' : 'none',
-    //         }}
-    //     >
-    //         <h3>Iam an iframe!</h3>
-    //     </iframe>
-    // }
 }
-
-
 
 export default function Editor(props) {
 
@@ -101,7 +73,6 @@ export default function Editor(props) {
         event.api.addPanel({
             id: 'Substitutions',
             component: 'substitutions',
-            // renderer: 'always',
             params: {
                 title: 'Rule Substitution',
             },
@@ -111,7 +82,6 @@ export default function Editor(props) {
         const devices = event.api.addPanel({
             id: 'Devices',
             component: 'devices',
-            // renderer: 'always',
             params: {
                 title: 'Devices',
             },

@@ -34,9 +34,7 @@ export default function InterceptionConfigurationCard(
         onDeleteClicked=(index)=>{},
         key=`interception-pattern-${Math.floor(Math.random()*100)}`
     } = props;
-    // console.log(props);
 
-    // const [ init, setInit ] = useState(true);
     const [jsonTemplate, setJsonTemplate] = useState(initJsonTemplate);
     const [plainTemplate, setPlainTemplate] = useState(initPlainTemplate);
 
@@ -76,13 +74,10 @@ export default function InterceptionConfigurationCard(
     );
 
     useEffect(() => {
-
-
             //if the user did all changes and has closed the modal, the changes are ready for commitment
             if (modalOpen) return;
-
             commitUpdateHandler();
-        }, [modalOpen/*jsonTemplate, plainTemplate, jsonTemplateActive, jsonRule, plainRule, jsonRuleActive, topic,*/ /*conflictStatus, conflictMessage*/]
+        }, [modalOpen]
     );
 
     return (
@@ -98,12 +93,9 @@ export default function InterceptionConfigurationCard(
                     height: '100%',
                     transition: '0.2s'
                 }
-
             }}
         >
             <CardActionArea
-                // onClick={() => setSelectedCard(index)}
-                // data-active={selectedCard === index ? '' : undefined}
                 sx={{
                     height: '100%',
                     '&[data-active]': {
@@ -113,7 +105,6 @@ export default function InterceptionConfigurationCard(
                         },
                     },
                 }}
-                // onClick={()=>{setModalOpen(true)}}
             >
                 <CardContent sx={{ height: '100%' }}>
                     <Stack
@@ -133,7 +124,6 @@ export default function InterceptionConfigurationCard(
                                 <Chip
                                     label={topic}
                                     size="small"
-                                    // sx={{maxWidth: 80}}
                                 />
                             </Tooltip>
 
@@ -167,12 +157,6 @@ export default function InterceptionConfigurationCard(
                         </Stack>
                         <Stack
                             direction="column"
-                            sx={{
-                                // pl:3,
-                                // width: 10,
-                                // maxWidth: 60
-                            }}
-
                         >
                             <Tooltip title={"Edit this interception pattern"}>
                                 <IconButton

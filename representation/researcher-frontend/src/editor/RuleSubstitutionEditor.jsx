@@ -37,11 +37,7 @@ const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
 
 
 export default function RuleSubstitutionEditor() {
-    //TODO: get the information from the RulesEditor which rules are selected for the further configuration process
-
     const [originalRules, setOriginalRules] = useState([
-       /* {alias: 'Rule X_0', options: ['Option A', 'Option B']},
-        {alias: 'Rule X_1', options: ['Option A', 'Option B']},*/
     ]);
 
     const [loading, setLoading] = useState(false);
@@ -52,8 +48,6 @@ export default function RuleSubstitutionEditor() {
             //reset old data
             setOriginalRules(()=>[]);
             setLoading(()=>true);
-            // console.log(rules);
-            //TODO: make remote call to api to get further information about this automation rule
             const promises = [];
             const dataCollector = [];
             const triggersToIds = {}
@@ -90,7 +84,6 @@ export default function RuleSubstitutionEditor() {
                         const nextTrigger = triggersToIds[nextKey];
                         if(!_.isEqual(currentTrigger, nextTrigger))
                             continue
-                        // console.log({currentTrigger, nextTrigger})
                         compatibleRuleIds[currentKey].add(nextKey);
                     }
                 }

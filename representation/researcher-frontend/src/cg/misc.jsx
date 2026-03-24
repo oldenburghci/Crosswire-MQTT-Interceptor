@@ -29,7 +29,6 @@ export function drawHover(context, data, settings) {
     const label = data.label;
     const subLabel = data.tag !== "unknown" ? data.tag : "";
     const clusterLabel = data.clusterLabel;
-
     // Then we draw the label background
     context.beginPath();
     context.fillStyle = "#fff";
@@ -61,7 +60,6 @@ export function drawHover(context, data, settings) {
     context.shadowOffsetX = 0;
     context.shadowOffsetY = 0;
     context.shadowBlur = 0;
-
     // And finally we draw the labels
     context.fillStyle = "#AF9F9FFF";
     context.font = `${weight} ${size}px ${font}`;

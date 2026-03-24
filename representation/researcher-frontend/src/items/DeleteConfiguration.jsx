@@ -1,4 +1,4 @@
-import {Box, Button, darken, FormControl, Paper, Stack, TextField, Tooltip, Typography} from "@mui/material";
+import { Button, FormControl, Paper, Stack, TextField, Tooltip, Typography} from "@mui/material";
 import "./ScrollbarStyles.css";
 import {useEffect, useState} from "react";
 
@@ -23,8 +23,6 @@ export default function DeleteConfiguration({
             <Stack>
                 <Stack
                     sx={{
-                        // position: "relative",
-                        // display: "inline-block" ,
                         width: "100%",
                         height: "100%",
                         borderRadius: 4,
@@ -74,19 +72,6 @@ export default function DeleteConfiguration({
                                 Commit
                             </Button>
                         </Tooltip>
-
-                            {/*<Tooltip title={"Abort the operation."}>*/}
-                            {/*    <Button*/}
-                            {/*        edge={"end"}*/}
-                            {/*        sx={{ m:1 }}*/}
-                            {/*        variant="contained"*/}
-                            {/*        color="error"*/}
-                            {/*        // onClick={onClose}*/}
-                            {/*    >*/}
-                            {/*        Abort*/}
-                            {/*    </Button>*/}
-                            {/*</Tooltip>*/}
-
                     </FormControl>
                 </Stack>
             </Stack>

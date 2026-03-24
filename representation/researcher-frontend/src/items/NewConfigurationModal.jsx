@@ -52,23 +52,6 @@ export default function NewConfigurationModal(
             "/middleware/api/configurations",
             {
                 friendlyName: configurationName,
-                // shared: false,
-                // deviceConfigurationStep: {
-                //     type: "devices",
-                //     ready: false,
-                //     devices: []
-                // },
-                // rulesConfigurationStep: {
-                //     type: "rules",
-                //     ready: false,
-                //     ruleSubstitutions: []
-                // },
-                // errorConfigurationStep: {
-                //     type: "errors",
-                //     ready: false,
-                //     suppressedTopics: [],
-                //     interceptedTopics: [],
-                // }
             },
             {
                 headers:{
@@ -104,13 +87,11 @@ export default function NewConfigurationModal(
             ).then((memoResponse) => {
                 const { data } = memoResponse;
                 console.log(`memos... ${data}`)
-                //TODO: Memo uploaded and now?
             }).catch((error) => {
                 console.error(error);
             });
             reloadConfigurations();
         }).catch((error) => {
-            //TODO: notify user
         })
         onClose();
     }
@@ -128,7 +109,6 @@ export default function NewConfigurationModal(
                 <Divider/>
                 <Box sx={{m:1}}>
                     <FormControl>
-                        {/*<InputLabel>Configuration Name</InputLabel>*/}
                         <TextField
                             id={"label-new-config-name"}
                             required

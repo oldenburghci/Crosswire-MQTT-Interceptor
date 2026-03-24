@@ -10,20 +10,9 @@ export default function DevicesEditor2({
     onUpdate=(entities, domain)=>{}
 }){
 
-    // const [loading, setLoading] = useState(true);
-    //
-    // useEffect(()=>{
-    //     //gives the impression of data processing
-    //     setLoading(true);
-    //     setTimeout(() => {
-    //         setLoading(false);
-    //     }, 1500);
-    // }, [lights]);
-
     return (
         <Grid2 container size={12} sx={{}} spacing={2}>
             {/* Lights  */}
-
             <Grid2 size={12}>
                 {
                     (!loading) ?

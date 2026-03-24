@@ -99,16 +99,6 @@ export default function LightsEditor({
         });
     }
 
-    // const filterOptions = (opts, items) => {
-    //     const optionSet = new Set(opts.map(item=>item.entityId));
-    //     const itemSet = new Set([...items].map(item=>item.entityId));
-    //     const difference = optionSet.difference(itemSet);
-    //     const filtered = Array.from(difference);
-    //     return filtered.map((item)=>{
-    //         return {entityId : item, friendlyName : opts.find((opt) => opt.entityId === item).friendlyName };
-    //     });
-    // }
-
     const onDelete =(data, entityId) => {
         const i = data.findIndex((item)=>item.entityId === entityId);
         if (i === -1) return;
@@ -134,25 +124,16 @@ export default function LightsEditor({
     const update = () => {
         const updateCollector = [];
         lightItems.forEach((item,index) => {
-            // const m = item.toMessage();
             updateCollector.push(item);
-            // return item;
         });
-        // console.log(lights);
         onUpdate(updateCollector);
     }
 
     // --- States ----
-    // const [deleteEntity,setDeleteEntity] = useState(null);
     const [options, setOptions] = useState([]);
     const [initOptions, setInitOptions] = useState([]);
     const [updateCounter, setUpdateCounter] = useState(0);
-    // const [items, setItems] = useState(
-        // initItems.map(item=> {
-        //     console.log(item);
-        //     return attachHandler(item)
-        // })
-    // );
+
     const [lightItems, setLightItems] = useState(
         ()=>{
             const collector = [];
@@ -169,7 +150,6 @@ export default function LightsEditor({
             return collector;
         }
     );
-    // console.log('LightsEditor items: ', lightItems);
 
     const getLightItems = useCallback(() => {
         return lightItems;
@@ -199,7 +179,6 @@ export default function LightsEditor({
     useEffect(() => {
         setUpdateCounter(()=>updateCounter+1 );
         if (updateCounter !== 0) update();
-        // console.log(`update received. Counter=${updateCounter}`);
     }, [lightItems]);
     // --- Component Markup ---
     return (
@@ -211,7 +190,6 @@ export default function LightsEditor({
                 {/*Headline*/}
                 <Grid2 size={12}>
                     <Stack direction="row" spacing={2} sx={{ justifyContent: "flex-start" }}>
-                        {/*TODO: Improve Icon*/}
                         <Lightbulb/>
                         <Typography variant="h5" component="div">Lights</Typography>
                     </Stack>
@@ -239,7 +217,6 @@ export default function LightsEditor({
                             sx={{
                                 height: 55,
                                 alignItems: "center",
-                                // justifyContent: "center"
                             }}
                         >
                             <Grid2

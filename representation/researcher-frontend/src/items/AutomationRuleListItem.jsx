@@ -1,12 +1,7 @@
 import {
     Badge,
-    Button,
     Chip,
-    Grid2,
     IconButton,
-    ListItem,
-    MenuItem,
-    MenuList,
     Paper,
     Stack,
     Tooltip,
@@ -15,10 +10,7 @@ import {
 import VerticalSwitch from "../base/VerticalSwitch.jsx";
 import {AnimatedListItem} from "../base/LightListItem.jsx";
 import {animated, useSpring} from "@react-spring/web";
-import {Add, Delete, Edit, ResetTv, RestartAlt} from "@mui/icons-material";
-import AddDeviceButton from "../base/AddDeviceButton.jsx";
-import ChipLabelMenu from "../base/ChipLabelMenu.jsx";
-import JsonView from "react18-json-view";
+import { Delete, Edit, RestartAlt} from "@mui/icons-material";
 import {useState} from "react";
 
 export default function AutomationRuleListItem(props) {
@@ -46,12 +38,6 @@ export default function AutomationRuleListItem(props) {
         }
     });
 
-    // const shiftProps = useSpring({
-    //     width: (edit) ? "100%" : "60%",
-    //     from: {
-    //         width: (edit) ? "60%" : "100%",
-    //     }
-    // });
     const shiftProps = {
         width: "100%"
     }
@@ -95,161 +81,21 @@ export default function AutomationRuleListItem(props) {
                     direction="row"
                     spacing={1}
                     sx={{
-                        // overflow: (edit) ? "hidden" : "none",
+
                         justifyContent: "space-around",
                     }}
                     style={{...shiftProps}}
                 >
                     {/*Triggers*/}
                     {
-                        // (edit) ? (
-                        //     <Grid2
-                        //         container
-                        //     >
-                        //         {/*add button for triggers*/}
-                        //         <Grid2 size={1}>
-                        //             <Chip
-                        //                 color="secondary"
-                        //                 label={
-                        //                     <ChipLabelMenu
-                        //                         onAdd={()=>{ setActiveControlElement(5, index, data) }}
-                        //                         show={edit}
-                        //                     />
-                        //                 }
-                        //             />
-                        //         </Grid2>
-                        //         { triggers.map((item) => {
-                        //             return (
-                        //                 <Grid2 size={1}>
-                        //                     <Chip
-                        //                         key={`trigger-indicator-${item.entityId}`}
-                        //                         color="secondary"
-                        //                         label={
-                        //                             <Tooltip title={<JsonView src={item.triggers}  editable={false}/>}>
-                        //                                 {item.friendlyName}
-                        //                             </Tooltip>
-                        //                         }
-                        //                         sx={{
-                        //                             width: `${( 100.0 / ((triggers.length + conditions.length + actions.length) + 3) ) }%`,
-                        //                         }}
-                        //                         onDelete={
-                        //                             ()=>{
-                        //                                 console.log(item);
-                        //                                 const i = triggers.findIndex((trigger) => trigger.entityId === item.entityId)
-                        //                                 if (i === -1) return;
-                        //                                 const update = [...triggers.slice(0, i), ...triggers.slice(i + 1)];
-                        //                                 setTriggers(update, index, data);
-                        //                             }
-                        //                         }
-                        //                     />
-                        //                 </Grid2>
-                        //             )
-                        //         })}
-                        //     </Grid2>)  :
-                            (<Badge badgeContent={triggers.length} color={"secondary"}><Chip color="secondary" label={"triggers"}/></Badge>)
-
+                        (<Badge badgeContent={triggers.length} color={"secondary"}><Chip color="secondary" label={"triggers"}/></Badge>)
                     }
                     {/*Conditions*/}
                     {
-                        // (edit) ? (
-                        //     <Grid2
-                        //         container
-                        //     >
-                        //         <Grid2>
-                        //             <Chip
-                        //                 color="warning"
-                        //                 label={
-                        //                     <ChipLabelMenu
-                        //                         onAdd={()=>{ setActiveControlElement(6, index, data) }}
-                        //                         show={edit}
-                        //                     />
-                        //                 }
-                        //             />
-                        //         </Grid2>
-                        //
-                        //     { conditions.map((item) => {
-                        //         return (
-                        //             <Grid2
-                        //                 size={1}
-                        //             >
-                        //                 <Chip
-                        //                     key={`condition-indicator-${item.entityId}`}
-                        //                     color="warning"
-                        //                     sx={{
-                        //                         width: `${( 100.0 / ((triggers.length + conditions.length + actions.length) + 3) ) }%`,
-                        //                     }}
-                        //                     label={
-                        //                         <Tooltip title={<JsonView src={ item.conditions}  editable={false}/>}>
-                        //                             {item.friendlyName}
-                        //                         </Tooltip>
-                        //                     }
-                        //                     onDelete={
-                        //                         ()=>{
-                        //                             console.log(item);
-                        //                             const i = conditions.findIndex((condition) => condition.entityId === item.entityId)
-                        //                             if (i === -1) return;
-                        //                             const update = [...conditions.slice(0, i), ...conditions.slice(i + 1)];
-                        //                             setConditions(update, index, data);
-                        //                         }
-                        //                     }
-                        //                 />
-                        //             </Grid2>
-                        //         )
-                        //     })}
-                        //
-                        // </Grid2>) :
-                            (<Badge badgeContent={conditions.length} color={"warning"}><Chip color="warning" label={"conditions"}/></Badge>)
-
+                        (<Badge badgeContent={conditions.length} color={"warning"}><Chip color="warning" label={"conditions"}/></Badge>)
                     }
                     {/*Actions*/}
                     {
-                        // (edit) ? (
-                        //     <Grid2
-                        //         container
-                        //     >
-                        //         <Grid2
-                        //             size={1}
-                        //         >
-                        //             <Chip
-                        //                 color="primary"
-                        //                 label={
-                        //                     <ChipLabelMenu
-                        //                         onAdd={()=>setActiveControlElement(7, index, data)}
-                        //                         show={edit}
-                        //                     />
-                        //                 }
-                        //             />
-                        //         </Grid2>
-                        //
-                        //     {actions.map((item) => {
-                        //         return (
-                        //             <Grid2 size={1}>
-                        //                 <Chip
-                        //                 key={`action-indicator-${item.entityId}`}
-                        //                 color="primary"
-                        //                 label={
-                        //                     <Tooltip title={<JsonView src={item.actions}  editable={false}/>}>
-                        //                         {item.friendlyName}
-                        //                     </Tooltip>
-                        //                 }
-                        //                 sx={{
-                        //                     width: `${( 100.0 / ((triggers.length + conditions.length + actions.length) + 3) ) }%`,
-                        //                 }}
-                        //                 onDelete={
-                        //                     ()=>{
-                        //                         console.log(item);
-                        //                         const i = actions.findIndex((action) => action.entityId === item.entityId)
-                        //                         if (i === -1) return;
-                        //                         const update = [...actions.slice(0, i), ...actions.slice(i + 1)];
-                        //                         setActions(update, index, data);
-                        //                     }
-                        //                 }
-                        //                 />
-                        //             </Grid2>
-                        //         )
-                        //     })}
-                        //
-                        // </Grid2>) :
                         ( <Badge badgeContent={actions.length} color={"primary"}>
                             <Chip
                                 color="primary"
@@ -268,10 +114,6 @@ export default function AutomationRuleListItem(props) {
                     <Stack
                         direction="row"
                         spacing={1}
-                        sx={{
-                            // justifyContent: "space-evenly",
-                            // alignItems: "stretch",
-                        }}
                     >
                         <Tooltip title={
                                 (on) ?

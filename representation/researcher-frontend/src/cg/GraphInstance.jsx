@@ -22,7 +22,6 @@ export default function GraphInstance(
             return n.id == event.node
         });
         node && setSelectedNode(node);
-        // console.log(node);
     }
 
     const onEnterNode = (event) => {
@@ -48,7 +47,6 @@ export default function GraphInstance(
         const {x, y} = sigma.viewportToGraph(event);
         sigma.getGraph().setNodeAttribute(draggedNode, 'x', x);
         sigma.getGraph().setNodeAttribute(draggedNode, 'y', y);
-
         // Prevent sigma to move camera:
         event.preventSigmaDefault();
         event.original.preventDefault();

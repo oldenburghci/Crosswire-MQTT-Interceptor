@@ -1,5 +1,4 @@
 import {Box, Typography} from "@mui/material";
-import ToggleSwitch from "../base/ToggleSwitch.jsx";
 import {StyledDataGrid} from "../base/StyledDataGrid.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
@@ -69,7 +68,6 @@ export default function RulesEditor(props) {
                 onRowSelectionModelChange={
                 //placeholder for future implementation
                     (ids) => {
-                        // console.log(...ids);
                         //retrieve a minimal data model from this component
                         // filter those entries in rules that have the same ids
                         const entries = rules.filter((rule) => {

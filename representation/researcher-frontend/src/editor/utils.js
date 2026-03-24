@@ -1,5 +1,4 @@
 import axios from "axios";
-import {unmountComponentAtNode} from "react-dom";
 
 const filterOptions = (opts, items) => {
     const optionSet = new Set(opts.map(item=>item.entityId));
@@ -23,23 +22,16 @@ const fetchAvailableDevices = async (optInFilter="light.", items=[], dismissUnav
             if (dismissUnavailable) {
                 return entity.entity_id.startsWith(optInFilter) && entity.state !== 'unavailable';
             }else{
-                // entity.unavailable = (entity);
                 return entity.entity_id.startsWith(optInFilter);
             }
         })
-        // console.log(lights);
         const opts = lights.map((item, index) => {
-            // console.log(item);
             return { entityId : item.entity_id, friendlyName: item.attributes.friendly_name, unavailable: item.state === 'unavailable' };
         });
-        // console.log(opts);
         // remove already used options
         const filtered = filterOptions(opts, items);
         return {filtered, opts};
-        // setOptions(()=>filtered);
-        // setInitOptions(()=>opts);
     }).catch((error) => {
-        //TODO: toast to user
         console.error(error);
     });
 }

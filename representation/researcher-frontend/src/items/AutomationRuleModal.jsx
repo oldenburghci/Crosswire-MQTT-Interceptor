@@ -134,10 +134,7 @@ export default function AutomationRuleModal(props={
                 setActions: ()=>{},
             };
 
-    // console.log(activeControlElement);
-
     const AnimatedGrid2 = animated(Grid2);
-
     const growAndShrinkAnimation = useSpring({
         m: (activeControlElement.controlElement === 5) ? 0 : 5,
         from: {

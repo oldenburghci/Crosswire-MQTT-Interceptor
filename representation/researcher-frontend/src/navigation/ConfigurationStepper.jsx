@@ -1,7 +1,4 @@
-import {Box, Button, Step, StepButton, StepLabel, Stepper, Tooltip} from "@mui/material";
-import {useState} from "react";
-
-import {CheckCircleOutlineOutlined, CircleOutlined} from "@mui/icons-material";
+import {Box, Step, StepButton, StepLabel, Stepper, Tooltip} from "@mui/material";
 
 export default function ConfigurationStepper(
         {
@@ -40,30 +37,6 @@ export default function ConfigurationStepper(
             }
         </Stepper>
         <Box sx={{display: "flex", flexDirection: "row", pt: 2}}>
-            {/*Spacing such that the button is on the left */}
-            {/*<Box sx={{flex: '1 1 auto'}}/>*/}
-            {/*{(completedSteps[activeStep]) ? (*/}
-            {/*    <Tooltip title={"Click to mark the current step as uncompleted. Only completed steps will be part of the experiment."}>*/}
-            {/*        <Button*/}
-            {/*            variant="outlined"*/}
-            {/*            startIcon={<CheckCircleOutlineOutlined />}*/}
-            {/*            onClick={()=>{onMarkedClicked(false)}}*/}
-            {/*        >*/}
-            {/*            Step Uncompleted*/}
-            {/*        </Button>*/}
-            {/*    </Tooltip>*/}
-            {/*    ) : (*/}
-            {/*        <Tooltip title={"Click to mark the current step as completed. Only completed steps will be part of the experiment."}>*/}
-            {/*            <Button*/}
-            {/*                variant="outlined"*/}
-            {/*                startIcon={<CircleOutlined />}*/}
-            {/*                onClick={()=>{onMarkedClicked(true)}}*/}
-            {/*            >*/}
-            {/*                Step Completed*/}
-            {/*            </Button>*/}
-            {/*        </Tooltip>*/}
-            {/*    )*/}
-            {/*}*/}
         </Box>
     </Box>
    )

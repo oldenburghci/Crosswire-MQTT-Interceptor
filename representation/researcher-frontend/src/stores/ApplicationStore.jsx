@@ -12,7 +12,6 @@ const useApplicationStore = createStore()(
                 },
                 lastConfiguration: localStorage.getItem('lastConfiguration') || '',
                 setLastConfiguration: (item)=>{
-                    // set({lastConfiguration: item});
                     localStorage.setItem('lastConfiguration', item);
                 },
                 lastMenu: parseInt(localStorage.getItem('lastMenu')) || 0,

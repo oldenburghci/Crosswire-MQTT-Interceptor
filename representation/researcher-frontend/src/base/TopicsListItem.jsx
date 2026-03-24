@@ -1,4 +1,4 @@
-import {IconButton, ListItem, ListItemButton, ListItemText, Tooltip} from "@mui/material";
+import {IconButton, ListItem, ListItemText, Tooltip} from "@mui/material";
 import "./TopicsListItem.css";
 import {CircleOutlined, CircleRounded} from "@mui/icons-material";
 import TemplateIndicator from "../feedback/TemplateIndicator.jsx";
@@ -13,7 +13,6 @@ export default function TopicsListItem (
     //use type to differentiate between suppressed and intercepted topics...
     const { type, intended, alreadyHandled, topic } = data;
     const { template, rule } = (type==="intercept") ? data : { template: {}, rule: {} };
-    // console.log(data);
 
     return (
         <ListItem
@@ -72,5 +71,3 @@ export default function TopicsListItem (
         </ListItem>
     );
 }
-
-// export default function renderTopicListItemRow()

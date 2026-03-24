@@ -25,37 +25,7 @@ export default function DockViewControls(props) {
     };
 
     const onPopoutHandler = () => {
-        // const { containerApi } = props;
         alert('upcoming feature :P')
-        // console.log(props);
-        // if (props.api.location.type !== 'popout') {
-        //     const jsonLayout = props.containerApi.toJSON();
-        //     localStorage.setItem('research-frontend-editor-layout', JSON.stringify(jsonLayout));
-        //     props.containerApi.addPopoutGroup(
-        //         props.group,
-        //         {
-        //             popoutUrl : "/popout2.html",
-        //             box: {
-        //                 left: 0,
-        //                 top: 0,
-        //                 height: 300,
-        //                 width:200
-        //             }
-        //         }
-        //     );
-        // } else {
-        //     // restore the last layout from the localstorage
-        //     const stringifyLayout = localStorage.getItem('research-frontend-editor-layout');
-        //     if (stringifyLayout) {
-        //         try{
-        //             const layout = JSON.parse(stringifyLayout);
-        //             props.containerApi.fromJSON(layout);
-        //         } catch (error){
-        //             console.error(error);
-        //             props.api.moveTo({ position: 'right' });
-        //         }
-        //     }
-        // }
     };
 
     useEffect(() => {

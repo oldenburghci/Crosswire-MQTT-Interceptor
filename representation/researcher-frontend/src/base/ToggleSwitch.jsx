@@ -7,7 +7,6 @@ export default function ToggleSwitch(props={
     label: 'sample',
     tooltip: 'default'
 }){
-    // console.log(props)
     return <>
             <Grid2 component="label" container alignItems="center" spacing={1} columnSpacing={0}>
                 {

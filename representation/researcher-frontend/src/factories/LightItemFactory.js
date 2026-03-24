@@ -54,7 +54,6 @@ const createLightItem = async (entityId = "", previous=null) => {
             brightness: converted.brightness,
             effectList: attributes?.effect_list,
         }
-        // console.log("converted FROM remote...")
         return converted;
     }
 
@@ -62,7 +61,6 @@ const createLightItem = async (entityId = "", previous=null) => {
     const toMessage = () => {
         const converted = {
             entity_id: result.entityId,
-            // friendly_name: result.friendlyName,
             transition: (result.transition) ? result.transitionTime : 0,
             domain:  "light",
             service: (result.on) ? "turn_on" : "turn_off",
@@ -82,13 +80,10 @@ const createLightItem = async (entityId = "", previous=null) => {
             if(result.selectedEffectIndex > 0)
                 converted.effect = result.effectList[result.selectedEffectIndex]
         }else{
-            // converted.service = "turn_off";
+
         }
-        // console.log("converted TO remote...")
         return converted;
     }
-
-    // console.log(result)
 
     result = {
         entityId: entityId,
@@ -108,7 +103,6 @@ const createLightItem = async (entityId = "", previous=null) => {
     result.alignPrevious = alignPrevious;
     result.toMessage = toMessage;
     result.fromMessage = fromMessage;
-    // console.log(result);
     if (previous) {
         result = {...result, ...result.alignPrevious(previous)};
     }
@@ -116,17 +110,11 @@ const createLightItem = async (entityId = "", previous=null) => {
     if( result?.capabilities !== undefined ) {
         //infer from capabilities what is possible with this light
         result = {...result, ...result.capabilities};
-        // console.log("merge with previous capabilities...")
-        // console.log(result);
         if (previous){
             result = {...result, ...result.alignPrevious(previous)};
         }
-        // console.log("merge with previous...")
-        // console.log(result);
         return result
     }
-    // console.log(result);
-
     //fetch if information is missing
     await axios.get(
         `/api/states/${entityId}`

@@ -1,4 +1,3 @@
-import {result} from "lodash";
 import axios from "axios";
 
 const createAutomationItem = async (entityId = "", previous = null) => {
@@ -19,8 +18,6 @@ const createAutomationItem = async (entityId = "", previous = null) => {
     }
     //prepare for persistent layer and SHH on run
     const toMessage = (input) => {
-        // console.log(result);
-        // console.log(input);
         const converted = {
             service: (input.on) ? "turn_on" : "turn_off",
             entityId: input.entityId,
@@ -42,12 +39,10 @@ const createAutomationItem = async (entityId = "", previous = null) => {
                 alias: input.alias
             }
         }
-        // console.log('converted to: ', converted);
         return converted;
     }
     // from persistent layer
     const alignPrevious = (previous) => {
-        // console.log(previous);
         return {
             entityId : previous.entityId,
             on: (previous.service === "turn_on"),
@@ -80,9 +75,6 @@ const createAutomationItem = async (entityId = "", previous = null) => {
         description: undefined,
         alias: undefined,
         key: undefined,
-        // alignPrevious: alignPrevious,
-        // fromMessage: fromMessage,
-        // toMessage: toMessage,
     }
     result.alignPrevious = alignPrevious;
     result.fromMessage = fromMessage;
@@ -90,9 +82,6 @@ const createAutomationItem = async (entityId = "", previous = null) => {
 
     if (previous) {
         result = { ...result, ...alignPrevious(previous) };
-        // result.alignPrevious = alignPrevious;
-        // result.toMessage = toMessage;
-        // result.fromMessage = fromMessage;
         return result;
     }
 
@@ -101,7 +90,6 @@ const createAutomationItem = async (entityId = "", previous = null) => {
     ).then(async response => {
         const {entity_id, attributes, state} = response.data;
         const internalId = attributes.id;
-        // console.log('first request')
 
         await axios.get(
             `/api/config/automation/config/${internalId}`
@@ -123,9 +111,7 @@ const createAutomationItem = async (entityId = "", previous = null) => {
     }).catch((error) => {
         console.log(error);
     });
-    // result.alignPrevious = alignPrevious;
-    // result.toMessage = toMessage;
-    // result.fromMessage = fromMessage;
+
     return result;
 }
 

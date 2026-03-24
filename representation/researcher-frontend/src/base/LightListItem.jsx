@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import React, {useState} from "react";
-import {AutoAwesome, Brightness4, CircleRounded, Delete, FlashOff, FlashOn} from "@mui/icons-material";
+import { Brightness4, CircleRounded, Delete, FlashOff, FlashOn} from "@mui/icons-material";
 import "./LightListItem.css";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
@@ -27,7 +27,6 @@ export default function LightListItem (
 ){
     const {style, index} = props;
     const data = props.data[index];
-    // console.log(props);
 
     const {
         entityId,
@@ -62,7 +61,6 @@ export default function LightListItem (
         component="div"
         // disablePadding
         className={index % 2 === 0 ? "RowEven" : "RowOdd"}
-        // sx={{pt:1, pb: 1 }}
     >
         <Grid2
             container
@@ -157,7 +155,6 @@ export default function LightListItem (
                                                         }
                                                     } : () => {}
                                                 }
-                                                // onMouseOver={()=>{ setActiveControl(0); }}
                                                 sx={{
                                                     border: (brightness && on) ? `2px solid` : '2px solid transparent',
                                                 }}
@@ -302,12 +299,9 @@ export default function LightListItem (
                                                 startIcon={<AutoAwesomeIcon/>}
                                                 color={ (selectedEffectIndex === -1 ) ? "#fff" : "primary"}
                                                 sx={{
-                                                    // mt: 2,
                                                     borderRadius: 2,
                                                     boxShadow: 'none',
                                                     p: 1,
-                                                    // px: 4,
-                                                    // py: 1.5,
                                                     textTransform: 'none',
                                                     border: "2px solid",
                                                 }}
