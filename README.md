@@ -1,3 +1,8 @@
+# MQTT Message Interceptor for simulating MITM attacks
+
+Welcome to our repository for the interceptor to simulate Man-in-the-middle (MITM) attacks for Smart Home devices. With this you can see what happens when a MQTT Message from either a Smart Home device or an Smart Home Hub will be intercepted and altered or blocked altogether, never reaching the recipient it was intended for. This software was also used in the scientific paper XXX by Wozniak and further use cases can be seen in that paper.
+
+If you're interested in deploying this software for yourself, please follow the installation guide below. As this was an artifact for the paper by Wozniak, this repository will **not** be actively maintained. For any alterations or additions to the interceptor, please either implement it yourself or fork this repository with your added implementations.
 
 # Installation Guide (Linux Ubuntu)
 
@@ -86,7 +91,7 @@ This guide provides step-by-step instructions for setting up the MQTT intercepto
    ```bash
    lsusb
    ```
-> **Hint:** If the result of `lsusb` is `Bus 001 Device 004: ID 10c4:ea60 Silicon Labs CP210x UART Bridge`, the vendor ID would be `10c4` and the product ID would be `ea60`.
+> **Info:** If the result of `lsusb` is `Bus 001 Device 004: ID 10c4:ea60 Silicon Labs CP210x UART Bridge`, the vendor ID would be `10c4` and the product ID would be `ea60`.
 4. Save the file and set the correct permissions:
    ```bash
    sudo chmod 644 /etc/udev/rules.d/99-zigbee-coord.rules
@@ -96,7 +101,7 @@ This guide provides step-by-step instructions for setting up the MQTT intercepto
    sudo udevadm control --reload-rules
    sudo udevadm trigger
    ```
-> **Hint:** `sudo chmod 666` gives a file read-and-write privileges. `sudo chmod 644` makes a file readable by udev.
+> **Info:** `sudo chmod 666` gives a file read-and-write privileges. `sudo chmod 644` makes a file readable by udev.
 
 ---
 
@@ -159,6 +164,7 @@ This guide provides step-by-step instructions for setting up the MQTT intercepto
 
 ## Notes
 - Using Docker Desktop is strongly discouraged as the coordinator was never properly passed through when preparing this installation guide.
+- Do **not** run Docker and a VM with Home Assistant at the same time as this will complicate the virtualization process for both.
 - Replace placeholders (e.g., `VendorID`, `ProductID`) with actual values.
 - Ensure the Zigbee coordinator is properly connected and recognized by the system.
 - The interceptor uses a self-signed certificate; proceed with caution.
