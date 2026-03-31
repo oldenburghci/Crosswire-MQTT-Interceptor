@@ -13,6 +13,7 @@ RUN go build --modfile=containerized.go.mod -o dist/main cmd/main.*go
 FROM docker.io/library/alpine:3.20.6
 COPY --chmod=500 --from=build /src/user-management/dist/main /srv/main
 COPY --chmod=500 --from=build /src/user-management/deploy/create-cert.sh /srv/create-cert.sh
+COPY --chmod=500 --from=build /src/user-management/config /srv/config
 RUN apk add openssl -q
 
 ENV HOST="TO SET"
@@ -24,6 +25,7 @@ ENV DB_PORT="TO SET"
 ENV DB_USER="TO SET"
 ENV DB_PASSWD="TO SET"
 
+WORKDIR "/srv"
 EXPOSE 9010
 
 ENTRYPOINT ["/bin/sh", "-c", "/srv/create-cert.sh && /srv/main"]

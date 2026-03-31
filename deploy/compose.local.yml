@@ -14,7 +14,7 @@ services:
       # access token for home assistant
       SHH_TOKEN: change_me
       # change accordingly to your setup
-      SSH_ADDRESS: http://host.docker.internal:8123
+      SHH_ADDRESS: http://host.docker.internal:8123
       MQTT_ERROR_INJECTION_ENGINE_REST_ADDRESS: https://mqtt-error-injection-engine:8090
       USER_MANAGEMENT_ADDRESS: https://user-management:9010
     ports:
