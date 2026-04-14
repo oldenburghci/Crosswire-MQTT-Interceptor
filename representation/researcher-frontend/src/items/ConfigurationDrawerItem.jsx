@@ -104,11 +104,6 @@ export default function ConfigurationDrawerItem(
                                 Rename
                             </MenuItem>
                             <MenuItem
-                                onClick={() => handleConfigurationDrawerMenuItemClicked(3)}
-                            >
-                                Share
-                            </MenuItem>
-                            <MenuItem
                                 onClick={()=> handleConfigurationDrawerMenuItemClicked(4)}
                             >
                                 Delete
