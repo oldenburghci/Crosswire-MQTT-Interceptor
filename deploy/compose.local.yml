@@ -19,7 +19,7 @@ services:
       USER_MANAGEMENT_ADDRESS: https://user-management:9010
     ports:
       - "9000:9000"
-      - "8123:8123"
+     # - "8123:8123"
     networks:
       - vnet-lab-middleware
     build:
@@ -97,6 +97,35 @@ services:
     shm_size: 128mb
     volumes:
       - db-model-volume:/var/lib/postgresql/data
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    volumes:
+      - ./homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8123:8123
+    restart: unless-stopped
+    networks:
+      - vnet-lab-middleware
+  
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    volumes:
+      - ./zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    devices:
+      - /dev/ttyUSB0:/dev/zigbee
+    environment:
+      - TZ=Etc/UTC
+#      - ZIGBEE2MQTT_DEBUG=true
+    networks:
+      - vnet-lab-middleware 
 
 volumes:
   db-model-volume:
