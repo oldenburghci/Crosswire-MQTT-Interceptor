@@ -7,7 +7,6 @@ import (
 	mymqtt "gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib/mqtt"
 )
 
-// The whole class became obsolete
 type LogTopicsHook struct {
 	mochimqtt.HookBase
 	Server *mymqtt.MITMMQTTServer
@@ -34,8 +33,6 @@ func (hook *LogTopicsHook) OnPublish(cl *mochimqtt.Client, pk packets.Packet) (p
 
 	return pk, nil
 }
-
-//func (hook *LogTopicsHook) OnConnect() {}
 
 func (hook *LogTopicsHook) Provides(b byte) bool {
 

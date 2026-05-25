@@ -13,12 +13,6 @@ import (
 func Start() {
 
 	router := gin.Default()
-	//logContext := func() gin.HandlerFunc {
-	//	return func(c *gin.Context) {
-	//		fmt.Printf("context=%+v\n\n", c)
-	//		fmt.Printf("c.Request.Body=%+v\n\n", c.Request.Body)
-	//	}
-	//}
 
 	router.Use(
 		mymgmt.SecurityHeaders(
@@ -29,17 +23,13 @@ func Start() {
 			),
 		),
 	)
-
 	// we will have to protect the api routes of home assistant later, they also use /api. Therefore, a distinction is required.
 	api := router.Group("/middleware/api")
 	api.Use(
-		//logContext(),
 		mymgmt.ValidateJWT(),
-		//logContext(),
 		mymgmt.RequestAccessControlPolicyCheck(
 			fmt.Sprintf("%s/auth/check-access", serverlib.GATEWAY_CONFIG.USER_MANAGEMENT_ADDRESS),
 		),
-		//logContext(),
 	)
 	api.GET("/ping", handler.PongHandler)
 
@@ -178,8 +168,7 @@ func Start() {
 	)
 
 	// --- FORWARD TO SHH ---
-	//router.GET("/ping", handler.PongHandler)
-	//those routes address the SH Hub directly.
+	// these routes address the SH Hub directly.
 	// See routes for Home Assistant https://developers.home-assistant.io/docs/api/rest/
 	shhRoutes := router.Group("/api")
 	shhRoutes.Use(handler.SetSHHubToken())

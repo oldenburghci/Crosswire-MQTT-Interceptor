@@ -133,63 +133,6 @@ func (server *UserManagementServer) Start() error {
 	authGroup.GET("/resources", server.GetAccessibleResources)
 
 	authGroup.POST("/check-access", server.CheckAccessPolicy)
-	//Only for test purposes, remove in "production"
-	//redirect to the server's own auth route for one dedicated resource
-	//authGroup.GET(
-	//	"/test/:id/ping",
-	//	myauth.RequestResourceAccess(
-	//		fmt.Sprintf("https://%s:%s/auth/resource/:id", server.config["HOST"], server.config["PORT"]),
-	//		"id",
-	//	),
-	//	func(ctx *gin.Context) { ctx.JSON(http.StatusOK, gin.H{"msg": "pong"}) },
-	//)
-	//Only for test purposes, remove in "production"
-	//router.POST(
-	//	"/middleware/api/memo/:id",
-	//	myauth.ValidateJWT(),
-	//	myauth.RequestAccessControlPolicyCheck(
-	//		fmt.Sprintf("https://%s:%s/auth/check-access", server.config["HOST"], server.config["PORT"]),
-	//	),
-	//	myauth.RequestResourceAccess(
-	//		fmt.Sprintf("https://%s:%s/auth/resource/:id", server.config["HOST"], server.config["PORT"]),
-	//		"id",
-	//	),
-	//	func(ctx *gin.Context) {
-	//		request := struct {
-	//			Text string `json:"text" binding:"required"`
-	//		}{}
-	//		if err := ctx.ShouldBindJSON(&request); err != nil {
-	//			fmt.Printf("[ERROR] %+v\n", err)
-	//			ctx.JSON(http.StatusBadRequest, gin.H{"msg": "error", "detail": err.Error()})
-	//			return
-	//		}
-	//		ctx.JSON(http.StatusOK, gin.H{"msg": "ok", "original": request})
-	//	},
-	//)
-	//Only for test purposes, remove in "production"
-	//redirect to the server's own auth route for all available resources
-	//authGroup.GET(
-	//	"/tests/ping",
-	//	myauth.RequestResourcesAccess(
-	//		fmt.Sprintf("https://%s:%s/auth/resources", server.config["HOST"], server.config["PORT"]),
-	//	),
-	//	func(ctx *gin.Context) {
-	//		resources, _ := ctx.Get("resources")
-	//		fmt.Printf("[Pong] resources=%+v\n", resources)
-	//		ctx.JSON(http.StatusOK, gin.H{
-	//			"msg":       "pong",
-	//			"resources": resources,
-	//		})
-	//	},
-	//)
-	////For test purposes only
-	//authGroup.POST(
-	//	"test/access/ping",
-	//	myauth.RequestAccessControlPolicyCheck(
-	//		fmt.Sprintf("https://%s:%s/auth/check-access", server.config["HOST"], server.config["PORT"]),
-	//	),
-	//	func(ctx *gin.Context) { ctx.JSON(http.StatusOK, gin.H{"msg": "pong"}) },
-	//)
 
 	err := router.RunTLS(
 		fmt.Sprintf("%s:%s",
@@ -240,22 +183,17 @@ func (server *UserManagementServer) ChangePasswordHandler(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"message": "internal server error"})
 		return
 	}
+
 	user, err := server.AuthProvider.GetUserByID(uid)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"message": "internal server error"})
 		return
 	}
 
-	//if len(req.NewPassword) >= 48 {
-	//	ctx.JSON(http.StatusBadRequest, gin.H{"message": "A password can only be 48 characters long"})
-	//	return
-	//}
-
 	if req.NewPassword == req.CurrentPassword {
 		ctx.JSON(http.StatusBadRequest, gin.H{"message": "The new password cannot be the same as the current password."})
 		return
 	}
-
 	//the ComparePassword method has a convenient function in it such that a plain text password is hashed and compared
 	// which allows the user to omit hashing
 	if isTrue := utils.ComparePassword(user.Password, req.CurrentPassword+server.config["PASSWD_SALT"]); !isTrue {
@@ -302,8 +240,6 @@ func (server *UserManagementServer) LoginHandler(ctx *gin.Context) {
 		}
 		dbUser = dbUsers[0]
 	}
-	//TODO: Check if the user is currently suspended
-	//fmt.Printf("dbUser: %+v\n", dbUser)
 	if dbUser == nil {
 		ctx.JSON(http.StatusUnauthorized, gin.H{"message": "no such user"})
 		return

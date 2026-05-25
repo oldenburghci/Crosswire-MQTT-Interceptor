@@ -2,25 +2,22 @@ package handler
 
 import (
 	"context"
-	"errors"
-	"slices"
-	"time"
-
-	//"bytes"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"slices"
 	"sync"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	myhttp "gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib/http"
-	"net/http"
-	//"github.com/gin-gonic/gin/binding"
 	"github.com/gorilla/websocket"
 	mochiPackets "github.com/mochi-mqtt/server/v2/packets"
 	mymqtt "gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib"
+	myhttp "gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib/http"
 	types "gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/mqtt-error-injection-engine/serverlib/types"
+	"net/http"
 )
 
 const (
@@ -35,7 +32,6 @@ var wsupgrader = websocket.Upgrader{
 	WriteBufferSize: 1024,
 }
 
-// TODO: needs a rework
 // PostManualInterceptionHandler handles an incoming request for topic interception.
 func PostManualInterceptionHandler(context *gin.Context) {
 	request := InterceptionConfigurationRequest{}
@@ -90,9 +86,7 @@ func PostTemplateInterceptionHandler(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": "internal server error."})
 		return
 	}
-	//TODO: this is basically a duplicated structure in the REST endpoint.. Consider the idea again
-	//encodedKey := base64.StdEncoding.EncodeToString([]byte(uuid.NewString()))
-	//myhttp.REST_SERVER.AddTopicsToIntercept(encodedKey, intercepted)
+
 	response := InterceptionConfigurationResponse{
 		InterceptedTopics:      intercepted,
 		NotInterceptableTopics: notIntercepted,
@@ -145,9 +139,7 @@ func PostCancelInterceptionHandler(context *gin.Context) {
 	)
 }
 
-// TODO: This is still an experimental feature
-
-// SubscribeInterceptionHandler websocket ...
+// SubscribeInterceptionHandler experimental
 func SubscribeInterceptionHandler(context *gin.Context) {
 	key := context.Params.ByName("key")
 	_, ok := myhttp.REST_SERVER.GetInterceptedTopics(key)
@@ -156,7 +148,6 @@ func SubscribeInterceptionHandler(context *gin.Context) {
 		return
 	}
 	w, r := context.Writer, context.Request
-	//topic := context.Params.ByName("topic")
 	// Initiate websocket connection
 	// this has to be organized along topics
 	conn, err := wsupgrader.Upgrade(w, r, nil)
@@ -381,15 +372,10 @@ func initializeInterceptions(topics []types.MQTTTopic, mode string) ([]*types.MQ
 		fmt.Printf("managed=%+v\n", managed.OutputTemplate)
 		interceptable = append(interceptable, managed)
 	}
-	//fmt.Printf("len(interceptable): %d, len(notInterceptable): %d\n", len(interceptable), len(notInterceptable))
 	return interceptable, notInterceptable, nil
 }
 
 // Request types
-
-//type SubscribeInterceptionRequest struct {
-//	Guid string `json:"guid"`
-//}
 
 type InterceptionConfigurationRequest struct {
 	Topics []types.MQTTTopic `json:"topics"`
@@ -400,7 +386,6 @@ type InterceptionConfigurationRequest struct {
 type SubscribeInterceptionResponse struct {
 	Control    string `json:"control"`
 	NewMessage string `json:"new_message,omitempty"`
-	//InterceptedTopics []*types.MQTTTopic `json:"intercepted_topics"`
 }
 
 type SubscribeInterceptionInitialResponse struct {

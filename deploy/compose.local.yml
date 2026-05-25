@@ -1,0 +1,137 @@
+# This compose file is suitable for quick development setups.
+# Consider and ingress router and a private dns zone for name resolution.
+# You could harden the system with an ingress router by removing direct access from the host machine
+# to the containers.
+
+services:
+  gateway:
+    image: smart-home-research/middleware/gateway:latest
+    restart: always
+    env_file: compose.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 9000
+      # access token for home assistant
+      SHH_TOKEN: change_me
+      # change accordingly to your setup
+      SHH_ADDRESS: http://host.docker.internal:8123
+      MQTT_ERROR_INJECTION_ENGINE_REST_ADDRESS: https://mqtt-error-injection-engine:8090
+      USER_MANAGEMENT_ADDRESS: https://user-management:9010
+    ports:
+      - "9000:9000"
+     # - "8123:8123"
+    networks:
+      - vnet-lab-middleware
+    build:
+      context: ../middleware/
+      dockerfile: gateway/deploy/gateway.containerfile
+      tags:
+        - smart-home-research/middleware/gateway:1.0.0
+        - smart-home-research/middleware/gateway:latest
+
+  mqtt-error-injection-engine:
+    image: smart-home-research/middleware/mqtt-error-injection-engine:latest
+    restart: always
+    environment:
+      REST_ENGINE_PORT: 8090
+      REST_ENGINE_HOST: 0.0.0.0
+      MQTT_ENGINE_PORT: 1883
+      MQTT_ENGINE_HOST: 0.0.0.0
+    ports:
+      - "8090:8090"
+      - "1883:1883"
+    networks:
+      - vnet-lab-middleware
+    build:
+      context: ../middleware/
+      dockerfile: mqtt-error-injection-engine/deploy/mqtt-error-injection-engine.containerfile
+      tags:
+        - smart-home-research/middleware/mqtt-error-injection-engine:1.0.0
+        - smart-home-research/middleware/mqtt-error-injection-engine:latest
+
+  user-management:
+    image: smart-home-research/middleware/user-management:latest
+    restart: always
+    env_file: compose.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 9010
+    ports:
+      - "9010:9010"
+    networks:
+      - vnet-lab-middleware
+    build:
+      context: ../middleware/
+      dockerfile: user-management/deploy/user-management.containerfile
+      tags:
+        - smart-home-research/middleware/user-management:1.0.0
+        - smart-home-research/middleware/user-management:latest
+
+  researcher-frontend:
+    image: smart-home-research/middleware/researcher-frontend:latest
+    restart: always
+    ports:
+      - "3000:443"
+    networks:
+      - vnet-lab-middleware
+    build:
+      context: ../representation/
+      dockerfile: ../representation/researcher-frontend/deploy/researcher-frontend.containerfile
+      tags:
+        - smart-home-research/representation/researcher-frontend:1.0.0
+        - smart-home-research/representation/researcher-frontend:latest
+
+  db:
+    image: docker.io/postgres:17.4
+    restart: always
+    # defines access for the db admin user in the environment section.
+    # use the admin user to access the db and create a database owner.
+    # Share the owner credentials in the corresponding env file with all components.
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWD:-password123}
+      - POSTGRES_USER=${DB_USER:-dba}
+    ports:
+      - "5432:5432"
+    networks:
+      - vnet-lab-middleware
+    shm_size: 128mb
+    volumes:
+      - db-model-volume:/var/lib/postgresql/data
+
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    volumes:
+      - ./homeassistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8123:8123
+    restart: unless-stopped
+    networks:
+      - vnet-lab-middleware
+  
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    volumes:
+      - ./zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    devices:
+      - /dev/ttyUSB0:/dev/zigbee
+    environment:
+      - TZ=Etc/UTC
+#      - ZIGBEE2MQTT_DEBUG=true
+    networks:
+      - vnet-lab-middleware 
+
+volumes:
+  db-model-volume:
+
+networks:
+  vnet-lab-middleware:
+    driver: bridge
+  pass-through:
+    driver: host

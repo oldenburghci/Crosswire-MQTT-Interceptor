@@ -4,7 +4,6 @@ go 1.23.4
 
 require (
 	github.com/casbin/casbin/v2 v2.103.0
-	github.com/casbin/gorm-adapter/v3 v3.32.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/golang-jwt/jwt/v5 v5.2.1
 	github.com/google/uuid v1.6.0
@@ -14,7 +13,10 @@ require (
 	gorm.io/gorm v1.25.12
 )
 
-require gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/user-management v0.0.0-20250522175905-1b4516e6e225 // indirect
+require (
+	github.com/casbin/gorm-adapter/v3 v3.32.0 // indirect
+	gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/user-management v0.0.0-20250522175905-1b4516e6e225
+)
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect
@@ -23,11 +25,9 @@ require (
 	github.com/bytedance/sonic/loader v0.2.3 // indirect
 	github.com/casbin/govaluate v1.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
-	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.8 // indirect
 	github.com/gin-contrib/sse v1.0.0 // indirect
-	github.com/gin-gonic/autotls v1.1.1 // indirect
 	github.com/glebarez/go-sqlite v1.20.3 // indirect
 	github.com/glebarez/sqlite v1.7.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
@@ -37,7 +37,6 @@ require (
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/golang-sql/civil v0.0.0-20220223132316-b832511892a9 // indirect
 	github.com/golang-sql/sqlexp v0.1.0 // indirect
-	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20231201235250-de7065d80cb9 // indirect
 	github.com/jackc/pgx/v5 v5.5.5 // indirect
@@ -71,3 +70,6 @@ require (
 	modernc.org/memory v1.5.0 // indirect
 	modernc.org/sqlite v1.20.3 // indirect
 )
+
+replace gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/user-management => ../user-management
+replace gitlab.offis.de/mwozniak/smart-hotel-lab/middleware/gateway => .

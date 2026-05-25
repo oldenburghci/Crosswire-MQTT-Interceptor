@@ -22,21 +22,13 @@ func StartMQTT() error {
 	if err != nil {
 		return err
 	}
-
 	// allows anonymous clients to connect to the startup
 	authHook := new(auth.AllowHook)
 	suppressHook := hooks.NewSuppressTopicHook(mymqtt.MITM_MQTT_SERVER)
 	interceptionHook := hooks.NewInterceptionHook(mymqtt.MITM_MQTT_SERVER)
-	//forwardHook, err := hooks.NewForwardingHook()
-	//if err != nil {
-	//	mymqtt.MITM_MQTT_SERVER.Server.Log.Error(fmt.Sprintf("error during NewForwardingHook(). err=%+v", err))
-	//	os.Exit(1)
-	//}
-	// arrange the chain
 	_ = mymqtt.MITM_MQTT_SERVER.Server.AddHook(authHook, nil)
 	_ = mymqtt.MITM_MQTT_SERVER.Server.AddHook(suppressHook, nil)
 	_ = mymqtt.MITM_MQTT_SERVER.Server.AddHook(interceptionHook, nil)
-	//_ = mymqtt.MITM_MQTT_SERVER.Server.AddHook(forwardHook, nil)
 
 	return mymqtt.MITM_MQTT_SERVER.Server.Serve()
 }

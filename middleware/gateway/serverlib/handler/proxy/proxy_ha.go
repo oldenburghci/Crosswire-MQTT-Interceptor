@@ -17,7 +17,6 @@ func ForwardWithParameters(target string, parameters ...string) gin.HandlerFunc 
 	}
 	return func(ctx *gin.Context) {
 		director := func(req *http.Request) {
-			//extract parameter
 			adaptedPath := remote.Path
 			for _, param := range parameters {
 				parameterValue, ok := ctx.Params.Get(param)
@@ -25,7 +24,6 @@ func ForwardWithParameters(target string, parameters ...string) gin.HandlerFunc 
 					ctx.JSON(http.StatusBadRequest, gin.H{"message": fmt.Sprintf("path param '%s' missing", param)})
 					return
 				}
-				//replace
 				adaptedPath = replaceWithParameter(adaptedPath, param, parameterValue)
 			}
 			req.Header = ctx.Request.Header
@@ -33,9 +31,6 @@ func ForwardWithParameters(target string, parameters ...string) gin.HandlerFunc 
 			req.URL.Scheme = remote.Scheme
 			req.URL.Host = remote.Host
 			req.URL.Path = adaptedPath
-			//fmt.Printf("adapted=%s from=%s\n", adaptedPath, req.URL.Path)
-			//fmt.Printf("headers=%+v \n", req.Header)
-			//fmt.Printf("ctx.headers=%+v \n", ctx.Request.Header)
 		}
 		proxy := &httputil.ReverseProxy{Director: director}
 		proxy.ServeHTTP(ctx.Writer, ctx.Request)
@@ -47,7 +42,6 @@ func ForwardHandler(target string) gin.HandlerFunc {
 	if err != nil {
 		panic(err)
 	}
-	//fmt.Printf("remote=%s://%s%s\n", remote.Scheme, remote.Host, remote.Path)
 
 	return func(ctx *gin.Context) {
 		director := func(req *http.Request) {
@@ -56,10 +50,6 @@ func ForwardHandler(target string) gin.HandlerFunc {
 			req.URL.Scheme = remote.Scheme
 			req.URL.Host = remote.Host
 			req.URL.Path = remote.Path
-			//fmt.Printf("adapted=%s from=%s\n", remote.Path, req.URL.Path)
-			//fmt.Printf("remote=%s://%s%s\n", remote.Scheme, remote.Host, remote.Path)
-			//fmt.Printf("headers=%+v \n", req.Header)
-			//fmt.Printf("ctx.headers=%+v \n", ctx.Request.Header)
 		}
 		proxy := &httputil.ReverseProxy{
 			Director: director,
@@ -69,7 +59,6 @@ func ForwardHandler(target string) gin.HandlerFunc {
 				},
 			},
 		}
-		//fmt.Printf("forwarding...\n")
 		proxy.ServeHTTP(ctx.Writer, ctx.Request)
 	}
 }

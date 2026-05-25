@@ -1,0 +1,20 @@
+
+.danger-box {
+    background-color: #F90;
+    box-shadow: 0 0 12px 2px coral;
+    background-image: -webkit-repeating-linear-gradient(
+        -45deg,
+        orange,
+        orange 20px,
+        coral 20px,
+        coral 40px
+    );
+    background-size: 200% 200%;
+    animation: barberpole 40s linear infinite;
+}
+
+@keyframes barberpole {
+    100% {
+        background-position: 100% 100%;
+    }
+}

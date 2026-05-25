@@ -152,9 +152,6 @@ func TestRESTEndpoint_AddTopicsToIntercept_Concurrent(t *testing.T) {
 		t.Error("There should be 3 intercepted topics in the map by this key")
 	}
 
-	//if len(retrieved) == len(topics0) || len(retrieved) == len(topics1) {
-	//	t.Error("There should be more topics in the map of intercepted topics than in the two slices")
-	//}
 	for _, topic := range retrieved {
 		isIn := slices.ContainsFunc(topicNames, func(name string) bool {
 			return name == topic.Name

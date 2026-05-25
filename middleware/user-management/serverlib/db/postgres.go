@@ -94,7 +94,6 @@ func (c *PostgresAuthController) createDatabase() error {
 	if err != nil {
 		return err
 	}
-	//TODO: database name from env
 	createCmd := fmt.Sprintf("CREATE DATABASE \"%s\"", "rbac-model")
 	err = db.Exec(createCmd).Error
 	if err != nil {
