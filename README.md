@@ -1,9 +1,50 @@
-# MQTT Message Interceptor for simulating MITM attacks
+<div style="text-align: center;">
+<img src="UOL_Logo_Blau.png" width="300">
+</div>
 
-Welcome to our repository for the interceptor to simulate Man-in-the-middle (MITM) attacks for Smart Home devices. With this you can see what happens when a MQTT Message from either a Smart Home device or an Smart Home Hub will be intercepted and altered or blocked altogether, never reaching the recipient it was intended for. This software was also used in the scientific paper XXX by Wozniak and further use cases can be seen in that paper.
+# **Crosswire: A MQTT Message Interceptor for simulating MITM attacks**
 
-If you're interested in deploying this software for yourself, please follow the installation guide below. As this was an artifact for the paper by Wozniak, this repository will **not** be actively maintained. For any alterations or additions to the interceptor, please either implement it yourself or fork this repository with your added implementations. This setup is using a Home Assistant and Zigbee2MQTT image in its compose file. If you're already using these applications through different means, please remove or comment them out.
+<!-- 🔗 **[Installation Guide](#installation-guide-linux-ubuntu)** -->
 
+<!-- # **Why Deploy Crosswire?** -->
+
+Smart homes are complex, interconnected ecosystems—until something breaks. Troubleshooting these systems is a recurring challenge for users, researchers, and administrators alike. **Crosswire** is an open-source toolkit designed to bridge the gap between controlled experimentation and real-world smart home environments.
+
+### **The Problem**
+
+Studying, testing, or training for smart home failures is difficult:
+
+- **Unpredictable faults**: Real-world breakdowns occur sporadically, making them hard to reproduce.
+- **Ethical constraints**: Deliberately disrupting a user’s living environment is impractical and unethical.
+- **Lack of realism**: Simulators or Wizard-of-Oz setups sacrifice ecological validity, while firmware modifications limit experiments to custom hardware.
+
+### **The Solution**
+
+Crosswire empowers you to:  
+✅ **Simulate realistic failures**—drop messages, delay responses, mutate payloads, or misconfigure automations to mimic device, network, or logic-level faults.  
+✅ **Deploy in operational environments**—works with off-the-shelf consumer hardware and integrates seamlessly with **Home Assistant** (no device firmware changes required).  
+✅ **Reproduce scenarios atomically**—load, deploy, and revert failure conditions with a single click, ensuring consistency across studies, tests, or training sessions.  
+✅ **Support diverse use cases**—ideal for **research** (user behavior studies), **industrial UX testing** (ecosystem-level product evaluation), and **administrator training** (hands-on fault diagnosis practice).
+
+### **Who Should Use Crosswire?**
+
+- **Researchers** studying user interactions with smart home failures.
+- **UX professionals** testing how products behave in heterogeneous ecosystems.
+- **Administrators** training to diagnose and resolve faults in smart buildings.
+- **Developers** building resilient smart home applications.
+
+### **Key Features**
+
+- **Transparent MQTT proxy**: Intercepts and manipulates messages between devices and Home Assistant.
+- **Two intervention modes**:
+  - **Message-level faults**: Drop, delay, or mutate MQTT payloads (e.g., simulate dead devices, flaky networks).
+  - **Automation-level faults**: Modify Home Assistant rules to introduce misconfigurations (e.g., stale rules, off-by-one thresholds).
+- **Scenario-based workflow**: Define, save, and reuse failure scenarios as JSON files for portability and reproducibility.
+- **Plug-and-play deployment**: Runs alongside Home Assistant with minimal setup (Docker/Podman support).
+
+### **License & Citation**
+
+Crosswire is released under the **Apache 2.0 License**. If you use this toolkit in your work, we kindly ask you to **cite the [original paper](#)** and/or **link to this repository** to support its development and visibility. As this was an artifact for the paper by Wozniak, this repository will **not** be actively maintained. For any alterations or additions to the interceptor, please either implement it yourself or fork this repository with your added implementations, so that others also can profit from your added implementations.
 # Installation Guide (Linux Ubuntu)
 
 This guide provides step-by-step instructions for setting up the MQTT interceptor, Zigbee2MQTT, and Home Assistant on a Linux Ubuntu system using Podman. Follow these steps to ensure a smooth installation and configuration process.
