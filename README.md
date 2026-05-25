@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-<img src="UOL_Logo_Blau.png" width="300">
+<img src="UOL_Logo.png" width="300">
 </div>
 
 # **Crosswire: A MQTT Message Interceptor for simulating MITM attacks**
