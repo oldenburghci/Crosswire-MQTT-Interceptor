@@ -237,6 +237,9 @@ and ensure the token has been added with:
 ---
 
 ## Notes
+
+> **Warning:** When deleting or renaming automations in Home Assistant, **ensure** beforehand that the to-be automation is **not** currently affliated with any configuration over at the interceptor (https://localhost:3000). Otherwise the interceptor will show a blank page and cannot interact with anymore unless the browser cache and cookies will be deleted.
+
 - Using Docker Desktop is strongly discouraged as the coordinator was never properly passed through when preparing this installation guide.
 - Do **not** run a container application and a VM with Home Assistant at the same time as this will complicate the virtualization process for both.
 - Replace placeholders (e.g., `VendorID`, `ProductID`) with actual values.
@@ -245,4 +248,3 @@ and ensure the token has been added with:
 - The interceptor runs under **https** and not **http** as well as uses a self-signed certificate.
 - To use and ultilize the automations created in Home Assistant a long-lived token has to be added to the interceptor as described in [Step 9](#step-9-adding-a-long-lived-token-to-the-interceptor-optional). This is not necessary if MQTT messages should merely be intercepted.
 - After changing automations through the interceptor, to revert these automations back to their original versions go to Edit -> Automation Rule -> ↻.
-- When deleting or renaming automations in Home Assistant, **ensure** beforehand that the to-be automation is **not** currently affliated with any configuration over at the interceptor (https://localhost:3000). Otherwise the interceptor will show a blank page and cannot interact with anymore unless the browser cache and cookies will be deleted.
