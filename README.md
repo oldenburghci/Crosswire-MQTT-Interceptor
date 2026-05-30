@@ -1,10 +1,10 @@
-<div style="text-align: center;">
-<img src="UOL_Logo.png" width="300">
+<div align="center">
+  <img src="UOL_Logo.png" width="300">
 </div>
 
 # **Crosswire: A MQTT Message Interceptor for simulating MITM attacks**
 
-<!-- 🔗 **[Installation Guide](#installation-guide-linux-ubuntu)** -->
+🔗 Go directly to the [Installation Guide](#installation-guide-linux-ubuntu)
 
 <!-- # **Why Deploy Crosswire?** -->
 
