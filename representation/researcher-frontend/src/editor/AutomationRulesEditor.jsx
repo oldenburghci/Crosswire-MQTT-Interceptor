@@ -11,7 +11,7 @@ import React, {useEffect, useMemo, useState} from "react";
 
 import AutomationRuleListItem from "../items/AutomationRuleListItem.jsx";
 import {createAutomationItem} from "../factories/AutomationItemFactory.js";
-import {fetchAvailableDevices} from "./utils.js";
+import {fetchAvailableDevices, filterOptions} from "./utils.js";
 import AddDeviceButton from "../base/AddDeviceButton.jsx";
 import "../base/TopicsListItem.css";
 import {animated, useSpring} from "@react-spring/web";
@@ -124,7 +124,7 @@ export default function AutomationRulesEditor(
             entityId
         ).then((result)=>{
             attachHandler(result);
-            selectedRules.push(result);
+            selectedRules.unshift(result);
             setSelectedRules(()=>new Array(...selectedRules));
         })
     }
@@ -180,6 +180,7 @@ export default function AutomationRulesEditor(
         return { triggersMap, conditionsMap, actionsMap };
     }, [allAutomations]);
     // --- effects ---
+    // fetch available rules initially
     useEffect(() => {
         fetchAvailableDevices("automation", selectedRules, false).then((result)=> {
             const {filtered, opts} = result;
@@ -199,6 +200,12 @@ export default function AutomationRulesEditor(
         })
     }, []);
 
+    //reduce available options after a new rule has been added
+    useEffect(() => {
+        const filtered = filterOptions(initOptions, selectedRules);
+        setOptions(()=>filtered);
+    }, [selectedRules]);
+
     useEffect(()=>{
         setUpdateCounter(()=>updateCounter+1 );
         if (updateCounter !== 0) update();
@@ -206,18 +213,6 @@ export default function AutomationRulesEditor(
 
     // --- animation ---
     const AnimatedGrid2 = animated(Grid2);
-
-    const growProps = useSpring({
-        size: (activeControlElement.controlElement === 5) ? 4.7 : 11.0,
-        from: {
-            size: (activeControlElement.controlElement === 5) ? 11.0 : 4.7
-        }
-    })
-
-    const shrinkProps = useSpring({
-        size: 11.0
-    })
-    const style = { display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' };
 
     return <Paper
         sx={{
