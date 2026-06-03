@@ -1,6 +1,6 @@
 import {
     Button, ButtonBase,
-    ButtonGroup, CircularProgress,
+    ButtonGroup,
     ClickAwayListener, Grid2,
     Grow,
     MenuItem, MenuList,
@@ -9,7 +9,7 @@ import {
     Tooltip, Typography,
 } from "@mui/material";
 import {Add, SortByAlpha} from "@mui/icons-material";
-import {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {useSpring, animated} from '@react-spring/web';
 import {ArrowDropDownIcon} from "@mui/x-date-pickers";
 
