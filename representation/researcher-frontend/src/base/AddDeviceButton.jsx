@@ -9,7 +9,7 @@ import {
     Tooltip, Typography,
 } from "@mui/material";
 import {Add, SortByAlpha} from "@mui/icons-material";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {useSpring, animated} from '@react-spring/web';
 import {ArrowDropDownIcon} from "@mui/x-date-pickers";
 
@@ -18,14 +18,13 @@ export default function AddDeviceButton({
     onAdd=(arg)=>{},
     tooltip="Add another device to the configuration"
 }) {
+    // console.log(options);
+
     const [clicked, setClicked] = useState(false);
     const [open, setOpen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(-1);
     const anchorRef = useRef(null);
     const [selectedSorting, setSelectedSorting ] = useState(-1);
-    const [sortedOptions, setSortedOptions] = useState([]);
-
-    const [sortingReady, setSortingReady] = useState(false);
 
     const AnimatedButton = animated(Button);
 
@@ -38,11 +37,11 @@ export default function AddDeviceButton({
         },
     });
 
+    //close the select dialog
     useEffect(() => {
         if (selectedIndex !== -1){
             setOpen(()=>false);
             setClicked(()=>false);
-            onAdd(options[selectedIndex]);
         }
         setSelectedIndex(-1);
     }, [selectedIndex])
@@ -65,37 +64,23 @@ export default function AddDeviceButton({
         setOpen(false);
         setClicked(false);
     }
-
-    useEffect(()=>{
-        if(selectedSorting === 0 ){
-            setSortedOptions(()=>{
-                return options.toSorted((a,b) => {
-                    if (a.friendlyName > b.friendlyName) return 1;
-                    if (a.friendlyName < b.friendlyName) return -1;
-                    return 0;
-                })
-            })
-            setSortingReady(true);
-            console.log("sorted")
-        }
-        if(selectedSorting === 1){
-            setSortedOptions(()=>{
-                return options.toSorted((a,b) => {
-                    if (a.friendlyName > b.friendlyName) return -1;
-                    if (a.friendlyName < b.friendlyName) return 1;
-                    return 0;
-                })
-            })
-            setSortingReady(true);
-            console.log("sorted")
-        }
-
+    const {sortFx} = useMemo(()=>{
+        if (selectedSorting === -1 ) return {sortFx: (a, b) => 0};
+        //define sort other functions here
+        const sortFxs = [
+            (a,b) => {
+                if (a.friendlyName > b.friendlyName) return -1;
+                if (a.friendlyName < b.friendlyName) return 1;
+                return 0;
+            },
+            (a,b) => {
+                if (a.friendlyName > b.friendlyName) return 1;
+                if (a.friendlyName < b.friendlyName) return -1;
+                return 0;
+            }
+        ]
+        return {sortFx: sortFxs[selectedSorting]};
     },[selectedSorting]);
-
-    //delay sorting to select grid or list view. The list of sorted options is initially empty otherwise.
-    useEffect(() => {
-        setTimeout(()=>setSelectedSorting(0), 1000);
-    },[])
 
     return (
         <>
@@ -175,7 +160,6 @@ export default function AddDeviceButton({
                                                         <Button
                                                             variant={(selectedSorting === 0) ? "contained" : "outlined"}
                                                             onClick={() => {
-                                                                setSortingReady(false);
                                                                 setSelectedSorting(0);
                                                             }}
                                                         >
@@ -187,7 +171,6 @@ export default function AddDeviceButton({
                                                         <Button
                                                             variant={(selectedSorting === 1) ? "contained" : "outlined"}
                                                             onClick={() => {
-                                                                setSortingReady(false);
                                                                 setSelectedSorting(1);
                                                             }}
                                                         >
@@ -203,9 +186,7 @@ export default function AddDeviceButton({
                                             id="split-button-menu"
                                             autoFocusItem
                                         >
-                                            {
-                                                (!sortingReady) && <CircularProgress/>
-                                            }{  (sortingReady) && (
+                                            {(
                                                 (options.length >= 12) ? (
                                                     <Grid2
                                                         container
@@ -215,7 +196,7 @@ export default function AddDeviceButton({
                                                         }}
                                                     >
                                                         {
-                                                            sortedOptions.map((item, index) => {
+                                                            options.sort(sortFx).map((item, index) => {
                                                                 return (
                                                                     <Grid2
                                                                         size={2}
@@ -238,9 +219,11 @@ export default function AddDeviceButton({
                                                                                 onClick={
                                                                                     (item.unavailable) ? () => {
                                                                                     } : () => {
-                                                                                        setSelectedIndex(index)
+                                                                                        console.log(`item clicked ${item.friendlyName}`)
+                                                                                        setSelectedIndex(index);
+                                                                                        onAdd(options[index]);
+                                                                                        // onAdd(options[index]);
                                                                                     }
-
                                                                                 }
                                                                                 key={index}
                                                                             >
@@ -257,7 +240,7 @@ export default function AddDeviceButton({
                                                         }
                                                     </Grid2>
                                                 ) : (
-                                                    sortedOptions.map((item, index) => (
+                                                    options.sort(sortFx).map((item, index) => (
                                                             <MenuItem
                                                                 sx={{
                                                                     color: "text.primary",
@@ -266,9 +249,9 @@ export default function AddDeviceButton({
                                                                 onClick={
                                                                     (item.unavailable) ? () => {
                                                                     } : () => {
-                                                                        setSelectedIndex(index)
+                                                                        onAdd(options[index]);
+                                                                        setSelectedIndex(index);
                                                                     }
-
                                                                 }
                                                                 key={index}
                                                             >
