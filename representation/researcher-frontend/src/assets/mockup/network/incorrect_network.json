@@ -1,0 +1,11 @@
+{
+  "message": "scanned",
+  "result": {
+    "data": {
+      "routes": false,
+      "type": "raw",
+      "value": {}
+    },
+    "status": "failed"
+  }
+}

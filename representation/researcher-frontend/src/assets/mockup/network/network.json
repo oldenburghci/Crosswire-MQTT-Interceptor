@@ -1,0 +1,1453 @@
+{
+  "message": "scanned",
+  "result": {
+    "data": {
+      "routes": false,
+      "type": "raw",
+      "value": {
+        "links": [
+          {
+            "depth": 15,
+            "linkquality": 235,
+            "lqi": 235,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 15,
+            "linkquality": 144,
+            "lqi": 144,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 15,
+            "linkquality": 215,
+            "lqi": 215,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 15,
+            "linkquality": 237,
+            "lqi": 237,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 15,
+            "linkquality": 211,
+            "lqi": 211,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 15,
+            "linkquality": 226,
+            "lqi": 226,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 15,
+            "linkquality": 215,
+            "lqi": 215,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 1,
+            "linkquality": 216,
+            "lqi": 216,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x00158d008b152192",
+              "networkAddress": 47061
+            },
+            "sourceIeeeAddr": "0x00158d008b152192",
+            "sourceNwkAddr": 47061,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 1,
+            "linkquality": 0,
+            "lqi": 0,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x00124b00292bf99e",
+              "networkAddress": 51908
+            },
+            "sourceIeeeAddr": "0x00124b00292bf99e",
+            "sourceNwkAddr": 51908,
+            "target": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "targetIeeeAddr": "0xe406bffffe216c58"
+          },
+          {
+            "depth": 0,
+            "linkquality": 212,
+            "lqi": 212,
+            "relationship": 0,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 15,
+            "linkquality": 161,
+            "lqi": 161,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 15,
+            "linkquality": 197,
+            "lqi": 197,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 15,
+            "linkquality": 200,
+            "lqi": 200,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 15,
+            "linkquality": 208,
+            "lqi": 208,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 15,
+            "linkquality": 220,
+            "lqi": 220,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 15,
+            "linkquality": 216,
+            "lqi": 216,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "targetIeeeAddr": "0x30fb10fffe9d0816"
+          },
+          {
+            "depth": 0,
+            "linkquality": 184,
+            "lqi": 184,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 15,
+            "linkquality": 223,
+            "lqi": 223,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 15,
+            "linkquality": 227,
+            "lqi": 227,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 15,
+            "linkquality": 232,
+            "lqi": 232,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 15,
+            "linkquality": 212,
+            "lqi": 212,
+            "relationship": 0,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 15,
+            "linkquality": 212,
+            "lqi": 212,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 15,
+            "linkquality": 231,
+            "lqi": 231,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 2,
+            "linkquality": 243,
+            "lqi": 243,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x54ef4410004a1e0c",
+              "networkAddress": 8235
+            },
+            "sourceIeeeAddr": "0x54ef4410004a1e0c",
+            "sourceNwkAddr": 8235,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 2,
+            "linkquality": 216,
+            "lqi": 216,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x00124b00292b8725",
+              "networkAddress": 32687
+            },
+            "sourceIeeeAddr": "0x00124b00292b8725",
+            "sourceNwkAddr": 32687,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "targetIeeeAddr": "0x90ab96fffe449cbe"
+          },
+          {
+            "depth": 0,
+            "linkquality": 200,
+            "lqi": 200,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 15,
+            "linkquality": 244,
+            "lqi": 244,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 15,
+            "linkquality": 255,
+            "lqi": 255,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 15,
+            "linkquality": 195,
+            "lqi": 195,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 15,
+            "linkquality": 220,
+            "lqi": 220,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 15,
+            "linkquality": 213,
+            "lqi": 213,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 15,
+            "linkquality": 233,
+            "lqi": 233,
+            "relationship": 0,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "targetIeeeAddr": "0xb43522fffeb31521"
+          },
+          {
+            "depth": 0,
+            "linkquality": 123,
+            "lqi": 123,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 15,
+            "linkquality": 252,
+            "lqi": 252,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 15,
+            "linkquality": 232,
+            "lqi": 232,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 15,
+            "linkquality": 195,
+            "lqi": 195,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 15,
+            "linkquality": 211,
+            "lqi": 211,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 15,
+            "linkquality": 255,
+            "lqi": 255,
+            "relationship": 0,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 15,
+            "linkquality": 226,
+            "lqi": 226,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 4,
+            "linkquality": 255,
+            "lqi": 255,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x0cae5ffffeb34c76",
+              "networkAddress": 21105
+            },
+            "sourceIeeeAddr": "0x0cae5ffffeb34c76",
+            "sourceNwkAddr": 21105,
+            "target": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "targetIeeeAddr": "0x142d41fffee49b9d"
+          },
+          {
+            "depth": 0,
+            "linkquality": 204,
+            "lqi": 204,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 15,
+            "linkquality": 251,
+            "lqi": 251,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 15,
+            "linkquality": 166,
+            "lqi": 166,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 15,
+            "linkquality": 155,
+            "lqi": 155,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 15,
+            "linkquality": 169,
+            "lqi": 169,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 15,
+            "linkquality": 237,
+            "lqi": 237,
+            "relationship": 0,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 15,
+            "linkquality": 220,
+            "lqi": 220,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "targetIeeeAddr": "0xa46dd4fffe4e160f"
+          },
+          {
+            "depth": 0,
+            "linkquality": 181,
+            "lqi": 181,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 15,
+            "linkquality": 163,
+            "lqi": 163,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 15,
+            "linkquality": 230,
+            "lqi": 230,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 15,
+            "linkquality": 196,
+            "lqi": 196,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 15,
+            "linkquality": 200,
+            "lqi": 200,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "sourceIeeeAddr": "0x28dba7fffe8272a4",
+            "sourceNwkAddr": 33977,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 15,
+            "linkquality": 187,
+            "lqi": 187,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 15,
+            "linkquality": 232,
+            "lqi": 232,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 6,
+            "linkquality": 211,
+            "lqi": 211,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x0ceff6fffe39bb17",
+              "networkAddress": 56139
+            },
+            "sourceIeeeAddr": "0x0ceff6fffe39bb17",
+            "sourceNwkAddr": 56139,
+            "target": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "targetIeeeAddr": "0x90ab96fffe9a734e"
+          },
+          {
+            "depth": 0,
+            "linkquality": 148,
+            "lqi": 148,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xe406bffffe216c58",
+              "networkAddress": 0
+            },
+            "sourceIeeeAddr": "0xe406bffffe216c58",
+            "sourceNwkAddr": 0,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 15,
+            "linkquality": 140,
+            "lqi": 140,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xa46dd4fffe4e160f",
+              "networkAddress": 3496
+            },
+            "sourceIeeeAddr": "0xa46dd4fffe4e160f",
+            "sourceNwkAddr": 3496,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 15,
+            "linkquality": 176,
+            "lqi": 176,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x142d41fffee49b9d",
+              "networkAddress": 6113
+            },
+            "sourceIeeeAddr": "0x142d41fffee49b9d",
+            "sourceNwkAddr": 6113,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 15,
+            "linkquality": 173,
+            "lqi": 173,
+            "relationship": 0,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe9a734e",
+              "networkAddress": 12018
+            },
+            "sourceIeeeAddr": "0x90ab96fffe9a734e",
+            "sourceNwkAddr": 12018,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 15,
+            "linkquality": 176,
+            "lqi": 176,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x30fb10fffe9d0816",
+              "networkAddress": 21402
+            },
+            "sourceIeeeAddr": "0x30fb10fffe9d0816",
+            "sourceNwkAddr": 21402,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 15,
+            "linkquality": 176,
+            "lqi": 176,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0xb43522fffeb31521",
+              "networkAddress": 46980
+            },
+            "sourceIeeeAddr": "0xb43522fffeb31521",
+            "sourceNwkAddr": 46980,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 15,
+            "linkquality": 183,
+            "lqi": 183,
+            "relationship": 2,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x90ab96fffe449cbe",
+              "networkAddress": 56986
+            },
+            "sourceIeeeAddr": "0x90ab96fffe449cbe",
+            "sourceNwkAddr": 56986,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          },
+          {
+            "depth": 2,
+            "linkquality": 194,
+            "lqi": 194,
+            "relationship": 1,
+            "routes": [],
+            "source": {
+              "ieeeAddr": "0x00124b002fa1479f",
+              "networkAddress": 14365
+            },
+            "sourceIeeeAddr": "0x00124b002fa1479f",
+            "sourceNwkAddr": 14365,
+            "target": {
+              "ieeeAddr": "0x28dba7fffe8272a4",
+              "networkAddress": 33977
+            },
+            "targetIeeeAddr": "0x28dba7fffe8272a4"
+          }
+        ],
+        "nodes": [
+          {
+            "failed": [],
+            "friendlyName": "Coordinator",
+            "ieeeAddr": "0xe406bffffe216c58",
+            "lastSeen": 1740670171802,
+            "networkAddress": 0,
+            "type": "Coordinator"
+          },
+          {
+            "definition": {
+              "description": "JETSTROM ceiling light panel, white spectrum, 100x40 cm",
+              "model": "L2208",
+              "supports": "light (state, brightness, color_temp, color_temp_startup, level_config), effect, power_on_behavior, color_options, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [],
+            "friendlyName": "DoorLight",
+            "ieeeAddr": "0x30fb10fffe9d0816",
+            "lastSeen": 1744023417075,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "JETSTROM 40100",
+            "networkAddress": 21402,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "JETSTROM ceiling light panel, white spectrum, 100x40 cm",
+              "model": "L2208",
+              "supports": "light (state, brightness, color_temp, color_temp_startup, level_config), effect, power_on_behavior, color_options, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [],
+            "friendlyName": "WindowLight",
+            "ieeeAddr": "0x90ab96fffe449cbe",
+            "lastSeen": 1744044911817,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "JETSTROM 40100",
+            "networkAddress": 56986,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "Wireless remote switch H1 (double rocker)",
+              "model": "WXKG15LM",
+              "supports": "battery, voltage, click_mode, operation_mode, action, linkquality",
+              "vendor": "Aqara"
+            },
+            "friendlyName": "H1Switch_Door",
+            "ieeeAddr": "0x54ef4410004a1e0c",
+            "lastSeen": 1744046343853,
+            "manufacturerName": "LUMI",
+            "modelID": "lumi.remote.b28ac1",
+            "networkAddress": 8235,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Door and window sensor",
+              "model": "MCCGQ11LM",
+              "supports": "battery, contact, device_temperature, voltage, power_outage_count, trigger_count, linkquality",
+              "vendor": "Aqara"
+            },
+            "friendlyName": "Sensor_Door",
+            "ieeeAddr": "0x00158d008b152192",
+            "lastSeen": 1744048351829,
+            "manufacturerName": "LUMI",
+            "modelID": "lumi.sensor_magnet.aq2",
+            "networkAddress": 47061,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Door and window sensor",
+              "model": "MCCGQ11LM",
+              "supports": "battery, contact, device_temperature, voltage, power_outage_count, trigger_count, linkquality",
+              "vendor": "Aqara"
+            },
+            "friendlyName": "Sensor_Window",
+            "ieeeAddr": "0x00158d008b15208d",
+            "lastSeen": 1740671882882,
+            "manufacturerName": "LUMI",
+            "modelID": "lumi.sensor_magnet.aq2",
+            "networkAddress": 33857,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Door and window sensor",
+              "model": "MCCGQ11LM",
+              "supports": "battery, contact, device_temperature, voltage, power_outage_count, trigger_count, linkquality",
+              "vendor": "Aqara"
+            },
+            "friendlyName": "Sensor_TVCab_L",
+            "ieeeAddr": "0x00158d008b15069e",
+            "lastSeen": 1740671917803,
+            "manufacturerName": "LUMI",
+            "modelID": "lumi.sensor_magnet.aq2",
+            "networkAddress": 11413,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Door and window sensor",
+              "model": "MCCGQ11LM",
+              "supports": "battery, contact, device_temperature, voltage, power_outage_count, trigger_count, linkquality",
+              "vendor": "Aqara"
+            },
+            "friendlyName": "Sensor_TVCab_R",
+            "ieeeAddr": "0x00158d008b152df7",
+            "lastSeen": 1740672245701,
+            "manufacturerName": "LUMI",
+            "modelID": "lumi.sensor_magnet.aq2",
+            "networkAddress": 34972,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "TRETAKT smart plug",
+              "model": "E2204",
+              "supports": "switch (state), power_on_behavior, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [],
+            "friendlyName": "Tretakt_Fan",
+            "ieeeAddr": "0xb43522fffeb31521",
+            "lastSeen": 1744040649361,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "TRETAKT Smart plug",
+            "networkAddress": 46980,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "TRETAKT smart plug",
+              "model": "E2204",
+              "supports": "switch (state), power_on_behavior, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [],
+            "friendlyName": "Tretakt_Window",
+            "ieeeAddr": "0x142d41fffee49b9d",
+            "lastSeen": 1743995113150,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "TRETAKT Smart plug",
+            "networkAddress": 6113,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "TRADFRI bulb E26/E27, color/white spectrum, globe, opal, 800/806/810 lm",
+              "model": "LED2109G6",
+              "supports": "light (state, brightness, color_temp, color_temp_startup, color_xy, color_hs, level_config), effect, power_on_behavior, color_options, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [],
+            "friendlyName": "StandLight",
+            "ieeeAddr": "0xa46dd4fffe4e160f",
+            "lastSeen": 1743953204759,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "TRADFRI bulb E27 CWS globe 806lm",
+            "networkAddress": 3496,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "TRADFRI bulb E26/E27, color/white spectrum, globe, opal, 800/806/810 lm",
+              "model": "LED2109G6",
+              "supports": "light (state, brightness, color_temp, color_temp_startup, color_xy, color_hs, level_config), effect, power_on_behavior, color_options, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [
+              "lqi"
+            ],
+            "friendlyName": "Bedlight_R",
+            "ieeeAddr": "0xa46dd4fffe516cb6",
+            "lastSeen": 1744016603895,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "TRADFRI bulb E27 CWS globe 806lm",
+            "networkAddress": 46177,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "TRADFRI bulb E26/E27, color/white spectrum, globe, opal, 800/806/810 lm",
+              "model": "LED2109G6",
+              "supports": "light (state, brightness, color_temp, color_temp_startup, color_xy, color_hs, level_config), effect, power_on_behavior, color_options, identify, linkquality",
+              "vendor": "IKEA"
+            },
+            "failed": [],
+            "friendlyName": "Bedlight_L",
+            "ieeeAddr": "0x90ab96fffe9a734e",
+            "lastSeen": 1744022692445,
+            "manufacturerName": "IKEA of Sweden",
+            "modelID": "TRADFRI bulb E27 CWS globe 806lm",
+            "networkAddress": 12018,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "Wireless button",
+              "model": "SNZB-01",
+              "supports": "battery, voltage, action, linkquality",
+              "vendor": "SONOFF"
+            },
+            "friendlyName": "SF-02",
+            "ieeeAddr": "0x00124b00292bf99e",
+            "lastSeen": 1744042731450,
+            "manufacturerName": "eWeLink",
+            "modelID": "WB01",
+            "networkAddress": 51908,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Wireless button",
+              "model": "SNZB-01",
+              "supports": "battery, voltage, action, linkquality",
+              "vendor": "SONOFF"
+            },
+            "friendlyName": "SF-01",
+            "ieeeAddr": "0x00124b00292b8725",
+            "lastSeen": 1744043718572,
+            "manufacturerName": "eWeLink",
+            "modelID": "WB01",
+            "networkAddress": 32687,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Temperature and humidity sensor with screen",
+              "model": "SNZB-02D",
+              "supports": "battery, temperature, humidity, comfort_temperature_min, comfort_temperature_max, comfort_humidity_min, comfort_humidity_max, temperature_units, temperature_calibration, humidity_calibration, linkquality",
+              "vendor": "SONOFF"
+            },
+            "friendlyName": "Temp_Humid",
+            "ieeeAddr": "0x0ceff6fffe39bb17",
+            "lastSeen": 1744048253758,
+            "manufacturerName": "SONOFF",
+            "modelID": "SNZB-02D",
+            "networkAddress": 56139,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Motion sensor",
+              "model": "SNZB-03",
+              "supports": "battery, voltage, occupancy, battery_low, linkquality",
+              "vendor": "SONOFF"
+            },
+            "friendlyName": "PIR_Door",
+            "ieeeAddr": "0x00124b002fb8a06b",
+            "lastSeen": 1742379246988,
+            "manufacturerName": "eWeLink",
+            "modelID": "MS01",
+            "networkAddress": 45315,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Motion sensor",
+              "model": "SNZB-03",
+              "supports": "battery, voltage, occupancy, battery_low, linkquality",
+              "vendor": "SONOFF"
+            },
+            "friendlyName": "PIR_Window",
+            "ieeeAddr": "0x00124b002fa1479f",
+            "lastSeen": 1744046485347,
+            "manufacturerName": "eWeLink",
+            "modelID": "MS01",
+            "networkAddress": 14365,
+            "type": "EndDevice"
+          },
+          {
+            "definition": {
+              "description": "Zigbee occupancy sensor",
+              "model": "SNZB-06P",
+              "supports": "occupancy, occupancy_timeout, occupancy_sensitivity, illumination, linkquality",
+              "vendor": "SONOFF"
+            },
+            "failed": [],
+            "friendlyName": "Sensor_Presence",
+            "ieeeAddr": "0x28dba7fffe8272a4",
+            "lastSeen": 1744044975223,
+            "manufacturerName": "SONOFF",
+            "modelID": "SNZB-06P",
+            "networkAddress": 33977,
+            "type": "Router"
+          },
+          {
+            "definition": {
+              "description": "Zigbee thermostatic radiator valve",
+              "model": "TRVZB",
+              "supports": "climate (occupied_heating_setpoint, local_temperature, local_temperature_calibration, system_mode, running_state), battery, child_lock, open_window, frost_protection_temperature, idle_steps, closing_steps, valve_opening_limit_voltage, valve_closing_limit_voltage, valve_motor_running_voltage, valve_opening_degree, valve_closing_degree, schedule, linkquality",
+              "vendor": "SONOFF"
+            },
+            "friendlyName": "Heater",
+            "ieeeAddr": "0x0cae5ffffeb34c76",
+            "lastSeen": 1744048402729,
+            "manufacturerName": "SONOFF",
+            "modelID": "TRVZB",
+            "networkAddress": 21105,
+            "type": "EndDevice"
+          }
+        ]
+      }
+    },
+    "status": "ok"
+  }
+}

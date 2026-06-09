@@ -1,0 +1,21 @@
+{
+  "memoId" : 0,
+  "shared" : true,
+  "items" : {
+    "0" : {
+      "desc": "We have to redo the script for the automated video annotation.",
+      "checked": false,
+      "createdBy" : "user123"
+    },
+    "1" : {
+      "desc": "The device configuration for the 'Sun.Dawn' entity looks problematic to me.",
+      "checked":  false,
+      "createdBy" :  "user123"
+    },
+    "2" : {
+      "desc": "There are no complimented rules to substitute 'Rule XY'",
+      "checked":  true,
+      "createdBy" :  "user456"
+    }
+  }
+}
